@@ -90,4 +90,4 @@ var t;!function(e,n){"object"==typeof exports&&"object"==typeof module?module.ex
 },{"./fetch-popular":"VlRc","./drow-marckup":"obAt","./pagination":"o8lo"}],"QvaY":[function(require,module,exports) {
 "use strict";require("../sass/main.scss"),require("./home-button"),require("./my-library"),require("./queue-button"),require("./pagination"),require("./popular"),require("./api-service"),require("./watched-button"),require("./fetch-popular"),require("./fetch-query"),require("./modal"),require("./add-to"),require("./load-spinner");
 },{"../sass/main.scss":"clu1","./home-button":"aRz8","./my-library":"L1LD","./queue-button":"aRz8","./pagination":"o8lo","./popular":"gm7x","./api-service":"aRz8","./watched-button":"aRz8","./fetch-popular":"VlRc","./fetch-query":"hbjF","./modal":"RSqK","./add-to":"aRz8","./load-spinner":"aRz8"}]},{},["QvaY"], null)
-//# sourceMappingURL=/codebusters-project-02/js.a7bee96e.js.map
+//# sourceMappingURL=/cbp2/js.b9d76ee2.js.map
