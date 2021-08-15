@@ -2,7 +2,9 @@ import getFilms from './fetch-popular';
 import modalFilm from '../templates/modal.hbs';
 import appendGalleryMarkup from './drow-marckup'
 // import cardForFilm from '../templates/film-card.hbs';
-import { paginationLibraryFilms } from './pagination';
+import { paginationQueueFilms } from './pagination';
+import { paginationWatchedFilms } from './pagination';
+
 
 let btnWachedInModal;
 let btnQueueInModal;
@@ -229,8 +231,7 @@ btnMyLibrary.addEventListener('click', evt => {
   btnQueueInHeader.addEventListener('click', onMadeQueueGallery);
   onMadeQueueGallery();
 
-  // Добавляет пагинацию
-  paginationLibraryFilms();
+  
 });
 
 function onMadeWatchedGallery() {
@@ -258,6 +259,8 @@ function onMadeWatchedGallery() {
   // console.log(a, `wowwo`);
   appendGalleryMarkup(savedWatchedFilmsInLocalStorage);
   // cardList.innerHTML = cardForFilm(savedWatchedFilmsInLocalStorage);
+  // Добавляет пагинацию
+  paginationWatchedFilms();
 }
 
 function onMadeQueueGallery() {
@@ -287,5 +290,7 @@ function onMadeQueueGallery() {
    * КОНЕЦ ВРЕМЕННОГО РЕШЕНИЯ
    */
   // cardList.innerHTML = cardForFilm(savedQueueFilmsInLocalStorage);
-   appendGalleryMarkup(savedQueueFilmsInLocalStorage);
+  appendGalleryMarkup(savedQueueFilmsInLocalStorage);
+  //добавляет пагинацию на страницу
+  paginationQueueFilms();
 }
