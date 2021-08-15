@@ -14,7 +14,7 @@ export default function appendGalleryMarkup(filmResult) {
 function filterGalleryProperty(filmResult) {
 
     const newGallery = filmResult.map(film => {
-        console.log(film, `weewew`)
+        //console.log(film, `weewew`)
 
         filterForRealese(film)
         filterForGenres(film)

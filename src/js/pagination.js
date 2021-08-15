@@ -81,18 +81,69 @@ export function paginationSearchFilms() {
 };
 
 
+// //функция для пагинации фильмов по библиотеке
+// export function paginationLibraryFilms(savedQueueFilmsInLocalStorage) {
+//   console.log('savedQueueFilmsInLocalStorage', savedQueueFilmsInLocalStorage);
+//   //проверка локалСторадж на правильное слово инпута
+//   console.log("количество фильмов в локале", JSON.parse(localStorage.queue).length)
+//   //в параметры пагинации вносим количество фильмов из LocalStorage
+//   // const queueA = JSON.parse(localStorage.queue);
+
+//   // ВЫЧИСЛЯЕТ ЗАВИСИМОСТЬ СТРАНИЦ ОТ КАРТОЧЕК
+//   // options.totalItems = JSON.parse(localStorage.queue).length;
+//   options.totalItems = 1;
+//   hidePaginationBtns();
+
+//   // if (queueA.length > options.itemsPerPage) {
+//   //   const a = queueA.slice(0, 20);
+//   //   a.page = 1;
+//   //   console.log(a);
+//   //   appendGalleryMarkup(a);
+//   // }
+
+//   // console.log('itemsPerPage', options.itemsPerPage);
+//   // const queueArray = JSON.parse(localStorage.queue);
+
+//   // options.itemsPerPage
+//   // console.log(options.itemsPerPage);
+
+//   // if(options.totalItems < queueLength) {
+//   //   page += 1
+//   // }
+//   //собственно рисует интерфейс пагинации
+//   const pagination = new Pagination('pagination', options);
+//   //возвращает на первую страницу
+//   pagination.movePageTo(1);
+//   //переход по страницам
+//   pagination.on('afterMove', (event) => {
+//       const currentPage = event;
+//       const queue = JSON.parse(localStorage.queue);
+//   }); 
+// };
+
+
+// Прячет одну страницу
+
+function hidePaginationBtns() {
+  if (options.totalItems <= 20) {
+    paginationDiv.classList.add('is-hidden');
+  }
+}
+
+
+
 //функция для пагинации фильмов по библиотеке
-export function paginationLibraryFilms(savedQueueFilmsInLocalStorage) {
-  console.log('savedQueueFilmsInLocalStorage', savedQueueFilmsInLocalStorage);
-  //проверка локалСторадж на правильное слово инпута
+export function paginationLibraryFilms() {
+ // console.log('savedQueueFilmsInLocalStorage', savedQueueFilmsInLocalStorage);
+  
   console.log("количество фильмов в локале", JSON.parse(localStorage.queue).length)
   //в параметры пагинации вносим количество фильмов из LocalStorage
   // const queueA = JSON.parse(localStorage.queue);
 
   // ВЫЧИСЛЯЕТ ЗАВИСИМОСТЬ СТРАНИЦ ОТ КАРТОЧЕК
   // options.totalItems = JSON.parse(localStorage.queue).length;
-  options.totalItems = 1;
-  hidePaginationBtns();
+  // options.totalItems = 1;
+  // hidePaginationBtns();
 
   // if (queueA.length > options.itemsPerPage) {
   //   const a = queueA.slice(0, 20);
@@ -110,22 +161,47 @@ export function paginationLibraryFilms(savedQueueFilmsInLocalStorage) {
   // if(options.totalItems < queueLength) {
   //   page += 1
   // }
+
+  options.totalItems = JSON.parse(localStorage.queue).length;
   //собственно рисует интерфейс пагинации
   const pagination = new Pagination('pagination', options);
   //возвращает на первую страницу
   pagination.movePageTo(1);
   //переход по страницам
   pagination.on('afterMove', (event) => {
-      const currentPage = event;
-      const queue = JSON.parse(localStorage.queue);
+    const currentPage = event;
+    const queueFilms = JSON.parse(localStorage.queue);
+    const totalQueueFilms = JSON.parse(localStorage.queue).length;
+    const totalPages = totalQueueFilms / 20;
+    console.log(totalPages);
+    const positions = [];
+  for (let i = 0; i < totalPages; i += 1) {
+    positions.push({ page: i + 1, position: 20 * i });
+  }
+    console.log("позиция", positions);
+    console.log("currentPage", currentPage.page)
+    let positionSlice = positions.find(position => position.page == currentPage.page);
+    console.log(positionSlice);
+    console.log(positionSlice.position);
+
+
+    const a = queueFilms.splice(positionSlice.position, 20);
+    
+    console.log(a);
+    appendGalleryMarkup(a);
+
   }); 
 };
 
+//создаем параметры для отсечения нужного куска массива фильмов для пагинации в библиотеке
+// function createParamsForPuginationLibrary (totalPages) {
+//   const positions = [];
+//   for (let i = 0; i < totalPages; i += 1) {
+//     positions.push({ page: i + 1, position: 20 * i });
+//   }
+//   //console.log("позиция", positions);
+  
+//   return positions;
 
-// Прячет одну страницу
-
-function hidePaginationBtns() {
-  if (options.totalItems <= 20) {
-    paginationDiv.classList.add('is-hidden');
-  }
-}
+// }
+//createParamsForPuginationLibrary(4);
