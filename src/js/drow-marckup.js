@@ -7,8 +7,33 @@ export default function appendGalleryMarkup(filmResult) {
   
     const newGallery = filterGalleryProperty(filmResult)
     const markup = gallery(newGallery)
-
+// console.log(gallery())
     galleryContainer.innerHTML = markup;
+
+    const wrap = document.querySelector('.film-card__info');
+    const rating = document.querySelector('.film-card__rating')
+//    console.log(galleryContainer.children.length)
+  for(let i = 0;i<galleryContainer.children.length;i++){
+    // galleryContainer.children[i].lastElementChild.classList.remove('active');
+    //   galleryContainer.children[i].lastElementChild.classList.includes('is-hidden');
+      console.log(galleryContainer.children[i])
+      const a = galleryContainer.children[i].lastElementChild.children
+      console.log(galleryContainer.children[i].lastElementChild.children)
+      for (let i = 0; i < a.length; i++) {
+          console.log(a[i].classList.contains('film-card__rating'))
+          if (a[i].classList.contains('film-card__rating')) {
+              const rating = document.querySelector('.film-card__rating')
+              a[i].classList.remove('is-hidden')
+          }
+      }
+    //   console.log(rating.classList.contains('is-hidden'))
+    //   rating.classList.remove('is-hidden')
+      
+  }
+//   e.target.classList.add('active');
+  
+
+
 }
 
 function filterGalleryProperty(filmResult) {
