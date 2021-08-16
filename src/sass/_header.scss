@@ -211,6 +211,7 @@ button.serchBtn {
     right: 273px;
   }
 }
+
 .notification {
   color: rgba(255, 0, 27, 1);
   text-align: center;
@@ -224,32 +225,22 @@ button.serchBtn {
 
 //добавлены анимации на нотификацию
 .notification {
-  // animation: OpeningSequence 7.2s linear forwards;
   animation: OpeningSequence 5000ms linear forwards;
 }
 
 @keyframes OpeningSequence {
   0% {
-    // text-shadow: 0 0 50px #fff;
-    //letter-spacing: 80px;
     opacity: 0.2;
-    //transform: rotateY(-90deg);
   }
   30% {
-    // text-shadow: 0 0 1px #fff;
-    //letter-spacing: 14px;
     opacity: 1;
-    //transform: rotateY(0deg);
   }
   85% {
-    // text-shadow: 0 0 0 #fff;
     opacity: 1;
-    //transform: rotateY(0deg) translateZ(100px);
   }
   100% {
-    // text-shadow: 0 0 30px #fff;
     opacity: 0;
-    //transform: translateZ(130px);
+
     pointer-events: none;
   }
 }
