@@ -206,63 +206,6 @@ function showRatingInLibrary(filmResult) {
 /**
  * Варианты реалзизации поиска
  */
-//  function appendGalleryMarkup(filmResult) {
-//     console.log(`ПОпали в отрисовку`)
-//     const newGallery = filmResult.map(film => {
-        
-//         film.release_date = Number.parseInt(film.release_date)
-
-//         const newGenres = film.genre_ids;
-//         // базовые жанры для вывода 
-//         const basicGenres = newGenres.slice(0, 3);
-//         // console.log(basicGenres, `базовые жанры`)
-//         // необходимы будут, если необходимо открыть все жанры при клике на жанры в карточке
-//         const othersGenres = newGenres.slice(3);
-//         // console.log(othersGenres,  `остальные`)
-//         const sumGenres = [];
-// //    console.log(newGenres)
-//         //    for (let i = 0; i <= newGenres.length; i++) {
-     
-//         //      genres.find( ganre => {
-            
-//         //         if (ganre.id === newGenres[i] && sumGenres.length <=2 ) {
-//         //             sumGenres.push(ganre.name)
-//         //         } else if (ganre.id === newGenres[i] && sumGenres.length === 3) {
-//         //              sumGenres.push('Others')
-//         //         }
-//         //     });
-            
-//         //     film.genre_ids = sumGenres.join(', ');
-//         // }
-//         genres.map(genre => {
-//             if (basicGenres.includes(genre.id)) {
-//                 if (sumGenres.length <= basicGenres.length) {
-                    
-//                     if (sumGenres.length === 2 && newGenres.length > basicGenres.length) {
-//                         sumGenres.push(genre.name)
-//                         sumGenres.push('Others')
-//                         return
-//                     }
-//                     sumGenres.push(genre.name)
-//                 }
-//             }
-//         } )
-//     film.genre_ids = sumGenres.join(', ');
- 
-//         return film;
-//     });
-
-//     const markup = gallery(newGallery)
-//     galleryContainer.innerHTML = markup;
-
-// }
-
-
-
-
-/**
- * ПЕРЕД РЕФАКТОРИНГОМ
- */
 //  import gallery from '../templates/film-card.hbs'
 //  import genres from './genres.json'
 
@@ -274,58 +217,43 @@ function showRatingInLibrary(filmResult) {
 //     const markup = gallery(newGallery)
 
 //     galleryContainer.innerHTML = markup;
+   
+//    showRatingInLibrary(filmResult)
 // }
 
 // function filterGalleryProperty(filmResult) {
  
 //     const newGallery = filmResult.map(film => {
-//        console.log(film, `gggjkhk`)
+
 //         filterForRealese(film)
-         
 //         filterForGenres(film)
-      
 //           return film;
 //    });
 //     return newGallery
 // }
 
-// // function filterForPosters(film) {
-// //       if (film.poster_path === null) {
-// //         //   film.poster_path = `https://i.ibb.co/HxmtdsL/viber-2021-08-12-15-51-44-146.jpg`
-            
-// //        } else {
-// //             // film.poster_path = `https://image.tmdb.org/t/p/original${film.poster_path}`
-// //        }
-      
-// // }
+
 // function filterForRealese(film) {
    
 //     film.release_date = Number.parseInt(film.release_date)
      
-//     //      if (film.release_date == "") {
-//     //        film.release_date = 'n/a';
-//     //    } else  {
-//     //        film.release_date = Number.parseInt(film.release_date) 
-//     //    }
 //  }
 // function filterForGenres(film) {
 
 //      const sumGenres = [];
-//     if (film.genres) {
-//         console.log(film.genres, `Я С ЖАНРАМИИ`)
+// if (film.genres) {
+        
 //              if (film.genres.length === 0) {
               
 //                  sumGenres.push('Others');
 //                   film.genres = sumGenres.join(', ');
 //                  return
 //        }
-        
-//         // const genresArray = film.genres.map(genre => genre.name);
-//         // const genresArray = film.genres.replace(/[^a-zа-яё\s]/gi, '').split(' ');
+  
 //          const genresArray = film.genres.split(', ');
-//         console.log(genresArray, `qpppp`)
+     
 //                  const basicGenres = genresArray.slice(0, 3);
-//         // console.log(basicGenres, `gg`)
+        
 //         const genresNames = genresArray.map(name => {
             
 //             if (sumGenres.length <= 2) {
@@ -336,14 +264,7 @@ function showRatingInLibrary(filmResult) {
 //                 }
 //                 sumGenres.push(name)
 //             }
-//             // if (sumGenres.length <= 2) {
-               
-//             //     if (sumGenres.length === 2 && genresArray.length > sumGenres.length) {
-//             //         sumGenres.push('Other')
-//             //         return
-//             //     }
-//             //     sumGenres.push(name)
-//             // }
+  
 //         }
 
 //         );
@@ -351,16 +272,11 @@ function showRatingInLibrary(filmResult) {
 //             film.genres = sumGenres.join(', ');
 //             return;
 //     }
-//     if (film.genre_ids) {
-//         console.log(`Я БЕЗ ЖАНРОВ`)
+// if (film.genre_ids) {
+        
 //     const newGenresId = film.genre_ids;
-//     console.log(film.genre_ids, `проверяем айнди массив`)
 //     const basicGenres = newGenresId.slice(0, 3);
 
-//     //    if (newGenresId.length === 0) {
-          
-//     //        sumGenres.push('Others');
-//     // };
 //       genres.map(genre => {
 //          if (basicGenres.includes(genre.id)) {
 //                getShortListGenres(sumGenres, newGenresId, basicGenres, genre.name)
@@ -370,23 +286,7 @@ function showRatingInLibrary(filmResult) {
 //     film.genres = sumGenres.join(', ');
     
 //     }
-//     // console.log(`Я БЕЗ ЖАНРОВ`)
-//     // const newGenresId = film.genre_ids;
-//     // console.log(film.genre_ids, `проверяем айнди массив`)
-//     // const basicGenres = newGenresId.slice(0, 3);
-
-//     // //    if (newGenresId.length === 0) {
-          
-//     // //        sumGenres.push('Others');
-//     // // };
-//     //   genres.map(genre => {
-//     //      if (basicGenres.includes(genre.id)) {
-//     //            getShortListGenres(sumGenres, newGenresId, basicGenres, genre.name)
-//     //         }
-//     //  })
- 
-//     // film.genres = sumGenres.join(', ');
-    
+  
 // }
 
 // function getShortListGenres(sumGenres, newGenresId, basicGenres, genre) {
@@ -399,4 +299,24 @@ function showRatingInLibrary(filmResult) {
 //                     }
 //                     sumGenres.push(genre)
 //     }  
+// }
+
+// function showRatingInLibrary(filmResult) {
+//      if (!filmResult[0].genre_ids) {
+      
+//     const rating = document.querySelector('.film-card__rating')
+
+//   for(let i = 0;i<galleryContainer.children.length;i++){
+  
+//       const infoSet = galleryContainer.children[i].lastElementChild.children;
+   
+//       for (let i = 0; i < infoSet.length; i++) {
+    
+//           if (infoSet[i].classList.contains('film-card__rating')) {
+//               const rating = document.querySelector('.film-card__rating')
+//               infoSet[i].classList.remove('is-hidden')
+//           }
+//     }
+//       }  
+//   }
 // }
