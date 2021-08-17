@@ -327,6 +327,19 @@ body.modal-open {
 }
 
 /*кнопка закрытия модального окна*/
+// .film__modal--close {
+//   position: absolute;
+//   top: 10px;
+//   right: 10px;
+
+//   background-color: unset;
+//   cursor: pointer;
+
+//   &:hover {
+//     fill: #ff6b01;
+//   }
+// }
+
 .button-close {
   position: absolute;
 
@@ -358,9 +371,9 @@ body.modal-open {
     content: '';
     position: absolute;
     top: 6px;
-    right: 14px;
+    right: 16px;
     width: 0px;
-    height: 18px;
+    height: 19px;
 
     transform: rotate(-45deg);
     border-right: 2px solid #000000;
@@ -369,7 +382,7 @@ body.modal-open {
     content: '';
     position: absolute;
     top: 6px;
-    left: 14px;
+    left: 12px;
     width: 0px;
     height: 18px;
 
