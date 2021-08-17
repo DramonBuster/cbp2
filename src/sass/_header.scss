@@ -106,6 +106,10 @@
     margin-right: 39px;
   }
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &:hover,
   &:focus,
   &.current {
