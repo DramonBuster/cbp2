@@ -1,6 +1,6 @@
 import getFilms from './fetch-popular';
 import modalFilm from '../templates/modal.hbs';
-import appendGalleryMarkup from './drow-marckup'
+import appendGalleryMarkup from './drow-marckup';
 // import cardForFilm from '../templates/film-card.hbs';
 import { paginationQueueFilms, paginationWatchedFilms } from './pagination';
 
@@ -22,6 +22,8 @@ const cardList = document.querySelector('.film-card__list');
 const libButtons = document.querySelector('.library-nav');
 const form = document.querySelector('.form');
 const paginationDiv = document.querySelector('.tui-pagination');
+//убираем нотификацию при клике на кнопки
+const notification = document.querySelector('.notification');
 
 // export to popular
 export const btnWatchedInHeader = document.querySelector('button[data-info="watched"]');
@@ -69,7 +71,9 @@ function onModalMakeCard(film) {
 
   const modalCard = modalFilm(openedFilm);
 
-  modal.innerHTML = modalCard;
+  // modal.innerHTML = modalCard;
+
+  modal.insertAdjacentHTML('beforeend', modalCard);
 
   btnWachedInModal = document.querySelector('.watched');
   btnQueueInModal = document.querySelector('.queue');
@@ -225,6 +229,8 @@ btnMyLibrary.addEventListener('click', evt => {
   // По нажатию кнопки МАЙ ЛИБ скрываем или открываем нужные элементы хедера
   libButtons.classList.remove('is-hidden');
   form.classList.add('is-hidden');
+  // убираем нотификацию при переключении
+   showNotification()
 
   // Вешаем слушателей на кнопки и запускаем функцию отрисовки новой галереи
   btnWatchedInHeader.addEventListener('click', onMadeWatchedGallery);
@@ -299,3 +305,9 @@ function onMadeQueueGallery() {
   //  Пагинация для фильмов в очереди
   paginationQueueFilms();
 }
+//убираем нотификацию при клике на кнопки
+function showNotification() {
+      console.log('Показываю предупреждение')
+          notification.classList.add('is-hidden');
+          // paginationDiv.classList.remove('is-hidden');
+        }

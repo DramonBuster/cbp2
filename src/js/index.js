@@ -12,3 +12,4 @@ import './modal';
 import './add-to';
 import './load-spinner';
 import './to-top';
+import './modal-team';
