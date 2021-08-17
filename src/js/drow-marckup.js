@@ -2,9 +2,11 @@ import gallery from '../templates/film-card.hbs'
 import genres from './genres.json'
 
 const galleryContainer = document.querySelector('.film-card__list')
+const noResultDiv = document.querySelector('.no-result')
 
 export default function appendGalleryMarkup(filmResult) {
 
+    noResultDiv.classList.add('is-hidden');
     const newGallery = filterGalleryProperty(filmResult)
     const markup = gallery(newGallery)
 

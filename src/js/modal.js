@@ -14,6 +14,7 @@ const modal = document.querySelector('.modal');
 const body = document.querySelector('body');
 const LOCALSTORAGE_WATCHED = 'watched';
 const LOCALSTORAGE_QUEUE = 'queue';
+const noResultDiv = document.querySelector('.no-result');
 
 // Запуск библиотеки по кнопке MY LIBRUARY
 const btnMyLibrary = document.querySelector('.library');
@@ -242,6 +243,7 @@ function onMadeWatchedGallery() {
   ) {
     // Скрывает кнопки, если библиотека пуста
     paginationDiv.classList.add('is-hidden');
+    noResultDiv.classList.remove('is-hidden');
     return;
   }
 
@@ -273,6 +275,7 @@ function onMadeQueueGallery() {
   ) {
     // Скрывает кнопки, если библиотека пуста
     paginationDiv.classList.add('is-hidden');
+    noResultDiv.classList.remove('is-hidden');
     return;
   }
 

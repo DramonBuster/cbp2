@@ -7,6 +7,7 @@ const form = document.querySelector('.form');
 const galleryContainer = document.querySelector('.film-card__list');
 const notification = document.querySelector('.notification');
 const paginationDiv = document.querySelector('.tui-pagination');
+const noResultDiv = document.querySelector('.no-result');
 form.addEventListener('submit', serchFilms);
 
 function serchFilms(e) {
@@ -20,9 +21,11 @@ function serchFilms(e) {
     .then(films => {
       if (films.results.length === 0) {
         notification.classList.remove('is-hidden');
+        noResultDiv.classList.remove('is-hidden');
         paginationDiv.classList.add('is-hidden');        
         return;
       }
+      noResultDiv.classList.add('is-hidden');
       paginationDiv.classList.remove('is-hidden');        
       const movies = films.total_results;
       localStorage.setItem('movies', movies);
