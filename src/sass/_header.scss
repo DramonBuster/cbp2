@@ -211,17 +211,39 @@ button.serchBtn {
     right: 273px;
   }
 }
+
 .notification {
-   color: rgba(255, 0, 27, 1);
-   text-align: center;
-   width: 100%;
-   height: 16px;
-   padding-top: 22px;
-   font-family: Roboto;
-   font-size: 14px;
-   line-height: 1.17;
+  color: rgba(255, 0, 27, 1);
+  text-align: center;
+  width: 100%;
+  height: 16px;
+  padding-top: 22px;
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 1.17;
 }
 
+//добавлены анимации на нотификацию
+.notification {
+  animation: OpeningSequence 5000ms linear forwards;
+}
+
+@keyframes OpeningSequence {
+  0% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+
+    pointer-events: none;
+  }
+}
 
 // Замена фона для библиотеки
 

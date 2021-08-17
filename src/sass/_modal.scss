@@ -162,10 +162,12 @@ body.modal-open {
     height: 478px;
   }
 }
+
+//заменил object-fit: contain чтобы не срезало часть картинки в модалке!! не менять обратно на cover
 .modal__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 5px;
 }
 

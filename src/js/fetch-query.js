@@ -19,10 +19,13 @@ function serchFilms(e) {
   console.log(queryParams);
   getFilms(queryParams)
     .then(films => {
+   
       if (films.results.length === 0) {
+         
         notification.classList.remove('is-hidden');
-        noResultDiv.classList.remove('is-hidden');
-        paginationDiv.classList.add('is-hidden');        
+        paginationDiv.classList.add('is-hidden');
+    
+        setTimeout(showNotification, 6000);
         return;
       }
       noResultDiv.classList.add('is-hidden');
@@ -49,3 +52,8 @@ function clearGallery() {
 function createGallery(queryCards) {
   appendGalleryMarkup(queryCards);
 }
+function showNotification() {
+      console.log('Показываю предупреждение')
+          notification.classList.add('is-hidden');
+          // paginationDiv.classList.remove('is-hidden');
+        }
