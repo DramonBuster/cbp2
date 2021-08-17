@@ -22,6 +22,8 @@ const cardList = document.querySelector('.film-card__list');
 const libButtons = document.querySelector('.library-nav');
 const form = document.querySelector('.form');
 const paginationDiv = document.querySelector('.tui-pagination');
+//убираем нотификацию при клике на кнопки
+const notification = document.querySelector('.notification');
 
 // export to popular
 export const btnWatchedInHeader = document.querySelector('button[data-info="watched"]');
@@ -225,6 +227,8 @@ btnMyLibrary.addEventListener('click', evt => {
   // По нажатию кнопки МАЙ ЛИБ скрываем или открываем нужные элементы хедера
   libButtons.classList.remove('is-hidden');
   form.classList.add('is-hidden');
+  // убираем нотификацию при переключении
+   showNotification()
 
   // Вешаем слушателей на кнопки и запускаем функцию отрисовки новой галереи
   btnWatchedInHeader.addEventListener('click', onMadeWatchedGallery);
@@ -299,3 +303,9 @@ function onMadeQueueGallery() {
   //  Пагинация для фильмов в очереди
   paginationQueueFilms();
 }
+//убираем нотификацию при клике на кнопки
+function showNotification() {
+      console.log('Показываю предупреждение')
+          notification.classList.add('is-hidden');
+          // paginationDiv.classList.remove('is-hidden');
+        }
