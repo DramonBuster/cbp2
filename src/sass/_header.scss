@@ -106,6 +106,10 @@
     margin-right: 39px;
   }
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &:hover,
   &:focus,
   &.current {
@@ -216,11 +220,21 @@ button.serchBtn {
   color: rgba(255, 0, 27, 1);
   text-align: center;
   width: 100%;
+  max-width: 320px;
   height: 16px;
   padding-top: 22px;
   font-family: Roboto;
   font-size: 14px;
   line-height: 1.17;
+  position: absolute;
+
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+    top: 50%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    top: 60%;  }
 }
 
 //добавлены анимации на нотификацию
