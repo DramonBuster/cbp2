@@ -1,6 +1,6 @@
 import getFilms from './fetch-popular';
 import modalFilm from '../templates/modal.hbs';
-import appendGalleryMarkup from './drow-marckup'
+import appendGalleryMarkup from './drow-marckup';
 // import cardForFilm from '../templates/film-card.hbs';
 import { paginationLibraryFilms } from './pagination';
 
@@ -67,7 +67,9 @@ function onModalMakeCard(film) {
 
   const modalCard = modalFilm(openedFilm);
 
-  modal.innerHTML = modalCard;
+  // modal.innerHTML = modalCard;
+
+  modal.insertAdjacentHTML('beforeend', modalCard);
 
   btnWachedInModal = document.querySelector('.watched');
   btnQueueInModal = document.querySelector('.queue');
@@ -287,5 +289,5 @@ function onMadeQueueGallery() {
    * КОНЕЦ ВРЕМЕННОГО РЕШЕНИЯ
    */
   // cardList.innerHTML = cardForFilm(savedQueueFilmsInLocalStorage);
-   appendGalleryMarkup(savedQueueFilmsInLocalStorage);
+  appendGalleryMarkup(savedQueueFilmsInLocalStorage);
 }
