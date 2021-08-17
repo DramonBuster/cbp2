@@ -67,7 +67,7 @@ body.modal-open {
 
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 500ms $timing-fn;
-  // overflow-y: scroll;
+  overflow-y: scroll;
 
   z-index: 1;
 
@@ -98,9 +98,9 @@ body.modal-open {
   position: absolute;
   z-index: 100;
 
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
 
   min-width: 280px;
   min-height: 958px;
