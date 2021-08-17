@@ -1,10 +1,12 @@
- import gallery from '../templates/film-card.hbs'
- import genres from './genres.json'
+import gallery from '../templates/film-card.hbs'
+import genres from './genres.json'
 
 const galleryContainer = document.querySelector('.film-card__list')
+const noResultDiv = document.querySelector('.no-result')
 
 export default function appendGalleryMarkup(filmResult) {
-  
+
+    noResultDiv.classList.add('is-hidden');
     const newGallery = filterGalleryProperty(filmResult)
     const markup = gallery(newGallery)
 
@@ -14,83 +16,84 @@ export default function appendGalleryMarkup(filmResult) {
 }
 
 function filterGalleryProperty(filmResult) {
- 
+
     const newGallery = filmResult.map(film => {
+        console.log(film, `weewew`)
 
         filterForRealese(film)
         filterForGenres(film)
-          return film;
-   });
+        return film;
+    });
     return newGallery
 }
 
 
 function filterForRealese(film) {
-   
+
     film.release_date = Number.parseInt(film.release_date)
-     
- }
+
+}
 function filterForGenres(film) {
 
-     const sumGenres = [];
-if (film.genres) {
-        
-             if (film.genres.length === 0) {
-              
-                 sumGenres.push('Others');
-                  film.genres = sumGenres.join(', ');
-                 return
-       }
-  
-         const genresArray = film.genres.split(', ');
-     
-                 const basicGenres = genresArray.slice(0, 3);
-        
+    const sumGenres = [];
+    if (film.genres) {
+
+        if (film.genres.length === 0) {
+
+            sumGenres.push('Others');
+            film.genres = sumGenres.join(', ');
+            return
+        }
+
+        const genresArray = film.genres.split(', ');
+
+        const basicGenres = genresArray.slice(0, 3);
+
         const genresNames = genresArray.map(name => {
-            
+
             if (sumGenres.length <= 2) {
-               
+
                 if (sumGenres.length === 2 && genresArray.length > basicGenres.length) {
                     sumGenres.push('Other')
                     return
                 }
                 sumGenres.push(name)
             }
-  
+
         }
 
         );
-         
-            film.genres = sumGenres.join(', ');
-            return;
-    }
-if (film.genre_ids) {
-        
-    const newGenresId = film.genre_ids;
-    const basicGenres = newGenresId.slice(0, 3);
 
-      genres.map(genre => {
-         if (basicGenres.includes(genre.id)) {
-               getShortListGenres(sumGenres, newGenresId, basicGenres, genre.name)
-            }
-     })
- 
-    film.genres = sumGenres.join(', ');
-    
+        film.genres = sumGenres.join(', ');
+        return;
     }
-  
+    if (film.genre_ids) {
+
+        const newGenresId = film.genre_ids;
+        const basicGenres = newGenresId.slice(0, 3);
+
+        genres.map(genre => {
+            if (basicGenres.includes(genre.id)) {
+                getShortListGenres(sumGenres, newGenresId, basicGenres, genre.name)
+            }
+        })
+
+        film.genres = sumGenres.join(', ');
+
+    }
+
 }
 
 function getShortListGenres(sumGenres, newGenresId, basicGenres, genre) {
 
-          if (sumGenres.length <= basicGenres.length) {
-                  
-                    if (sumGenres.length === 2 && newGenresId.length > basicGenres.length) {
-                        sumGenres.push('Others')
-                        return
-                    }
-                    sumGenres.push(genre)
-    }  
+    if (sumGenres.length <= basicGenres.length) {
+
+        if (sumGenres.length === 2 && newGenresId.length > basicGenres.length) {
+            sumGenres.push('Others')
+            return
+        }
+        sumGenres.push(genre)
+    }
 }
 
 function showRatingInLibrary(filmResult) {
@@ -127,16 +130,16 @@ function showRatingInLibrary(filmResult) {
 
 //     galleryContainer.innerHTML = markup;
 
-  
+
 // }
 
 // function filterGalleryProperty(filmResult) {
 
 //     const newGallery = filmResult.map(film => {
 //         filterForRealese(film)
-       
+
 //         filterForGenres(film)
-         
+
 //           return film;
 //    });
 //     return newGallery
@@ -152,15 +155,15 @@ function showRatingInLibrary(filmResult) {
 //     console.log(`iy`, film.jenres)
 //     if (film.genres) {
 
- 
+
 //         const genresArray = film.genres.map(genre => genre.name);
 
 //                  const basicGenres = genresArray.slice(0, 3);
-  
+
 //         const genresNames = genresArray.map(name => {
-            
+
 //             if (sumGenres.length <= 2) {
-               
+
 //                 if (sumGenres.length === 2 && genresArray.length > basicGenres.length) {
 //                     sumGenres.push('Other')
 //                     return
@@ -183,15 +186,15 @@ function showRatingInLibrary(filmResult) {
 //                getShortListGenres(sumGenres, newGenresId, basicGenres, genre.name)
 //             }
 //      })
- 
+
 //     film.genres = sumGenres.join(', ');
-    
+
 // }
 
 // function getShortListGenres(sumGenres, newGenresId, basicGenres, genre) {
 
 //           if (sumGenres.length <= basicGenres.length) {
-                  
+
 //                     if (sumGenres.length === 2 && newGenresId.length > basicGenres.length) {
 //                         sumGenres.push('Others')
 //                         return
@@ -212,7 +215,7 @@ function showRatingInLibrary(filmResult) {
 // const galleryContainer = document.querySelector('.film-card__list')
 
 // export default function appendGalleryMarkup(filmResult) {
-  
+
 //     const newGallery = filterGalleryProperty(filmResult)
 //     const markup = gallery(newGallery)
 
@@ -222,7 +225,7 @@ function showRatingInLibrary(filmResult) {
 // }
 
 // function filterGalleryProperty(filmResult) {
- 
+
 //     const newGallery = filmResult.map(film => {
 
 //         filterForRealese(film)
@@ -232,9 +235,8 @@ function showRatingInLibrary(filmResult) {
 //     return newGallery
 // }
 
-
 // function filterForRealese(film) {
-   
+
 //     film.release_date = Number.parseInt(film.release_date)
      
 //  }
@@ -244,7 +246,7 @@ function showRatingInLibrary(filmResult) {
 // if (film.genres) {
         
 //              if (film.genres.length === 0) {
-              
+
 //                  sumGenres.push('Others');
 //                   film.genres = sumGenres.join(', ');
 //                  return
@@ -255,9 +257,9 @@ function showRatingInLibrary(filmResult) {
 //                  const basicGenres = genresArray.slice(0, 3);
         
 //         const genresNames = genresArray.map(name => {
-            
+
 //             if (sumGenres.length <= 2) {
-               
+
 //                 if (sumGenres.length === 2 && genresArray.length > basicGenres.length) {
 //                     sumGenres.push('Other')
 //                     return
@@ -268,7 +270,7 @@ function showRatingInLibrary(filmResult) {
 //         }
 
 //         );
-         
+
 //             film.genres = sumGenres.join(', ');
 //             return;
 //     }
@@ -282,9 +284,9 @@ function showRatingInLibrary(filmResult) {
 //                getShortListGenres(sumGenres, newGenresId, basicGenres, genre.name)
 //             }
 //      })
- 
+
 //     film.genres = sumGenres.join(', ');
-    
+
 //     }
   
 // }
@@ -292,7 +294,7 @@ function showRatingInLibrary(filmResult) {
 // function getShortListGenres(sumGenres, newGenresId, basicGenres, genre) {
 
 //           if (sumGenres.length <= basicGenres.length) {
-                  
+
 //                     if (sumGenres.length === 2 && newGenresId.length > basicGenres.length) {
 //                         sumGenres.push('Others')
 //                         return
