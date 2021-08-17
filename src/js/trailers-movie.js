@@ -7,7 +7,7 @@ const backdrop = document.querySelector('.backdrop')
 
 export default function buttonOnclick(filmResult) {
 
-console.log(filmResult)
+
 
     galleryContainer.addEventListener('click', openModalMovie);
 }
@@ -15,11 +15,26 @@ console.log(filmResult)
 function showTexNoResulttButton(id) {
 
     for (let i = 0; i < galleryContainer.children.length; i++) {
-
-          if (galleryContainer.children[i].dataset.id === id) {
        
-              const currentBtnTrailer = galleryContainer.children[i].lastElementChild;
-              currentBtnTrailer.classList.add('no-result')
+          if (galleryContainer.children[i].dataset.id === id) {
+         
+              const infoSet = galleryContainer.children[i].children;
+         
+              for (let i = 0; i < infoSet.length; i++) {
+              
+                  if (infoSet[i].classList.contains('film-card__info')) {
+                 
+                      const arrayInfo = infoSet[i];
+                        for (let i = 0; i < arrayInfo.children.length; i++) {
+                  
+                            if (arrayInfo.children[i].classList.contains('film-card__trailler')) {
+                    
+                              const trailerbtn = arrayInfo.children[i];
+                               trailerbtn.classList.add('no-result')
+                            }
+                        }
+                }
+            }
     }
           }
 }
@@ -27,14 +42,12 @@ function showTexNoResulttButton(id) {
 function openModalMovie(evt) {
  
     const events = evt.target;
-    console.log(evt.target.classList.contains('film-card__trailler'))
      const currentId = evt.target.dataset.movie;
   
       
     if (evt.target.classList.contains('film-card__trailler')) {
     
         let queryParams = `movie/${evt.target.dataset.movie}/videos?api_key=27c4b211807350ab60580c41abf1bb8c`;
-  console.log(queryParams, `modal2`)
         fetchTraillerFilm(queryParams, currentId)
         return;
       }
@@ -43,10 +56,7 @@ function openModalMovie(evt) {
 function fetchTraillerFilm(queryParams, currentId) {
     getFilms(queryParams).then(film => {
        
-        // modal.classList.add('parent')
-        console.log(film, `мой массив`)
         const trailers = film.results;
-          
         putTrailerInModal(trailers, currentId)
     
     } )
@@ -54,7 +64,7 @@ function fetchTraillerFilm(queryParams, currentId) {
     
 }
 function putTrailerInModal(trailers, currentId) {
-   
+  
     if (trailers.length === 0) {
       
          showTexNoResulttButton(currentId)
@@ -77,18 +87,16 @@ function putTrailerInModal(trailers, currentId) {
 }
 function appendModalMarckup(trailerFilm) {
 
-    console.log(trailerFilm, `трейлер`)
     modal.classList.remove('is-hidden');
     backdrop.classList.remove('is-hidden')
     const trailerKey = trailerFilm.key;
     
      modal.innerHTML = ` <div class="modal__trailer"><iframe class="modal__frame"  src="https://www.youtube.com/embed/${trailerKey}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
-    //  closeModal() 
+  
      window.addEventListener('click', closeModal)
 }
 function closeModal(evt) {
 
-    // window.addEventListener('click', yfjfk)
       if (evt.target.classList.contains('modal')) {
             return;
       }
@@ -100,12 +108,12 @@ function closeModal(evt) {
     }
     if (modal.classList.contains('is-hidden')) {
          modal.classList.add('is-hidden')
-     backdrop.classList.add('is-hidden')
-     modal.innerHTML = ''; 
+        backdrop.classList.add('is-hidden')
+        modal.innerHTML = ''; 
     }
       modal.classList.add('is-hidden')
-     backdrop.classList.add('is-hidden')
-   modal.innerHTML = ''; 
+      backdrop.classList.add('is-hidden')
+      modal.innerHTML = ''; 
 
    
     return;
