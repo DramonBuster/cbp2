@@ -1,5 +1,6 @@
 import gallery from '../templates/film-card.hbs'
 import genres from './genres.json'
+ import buttonOnclick from './trailers-movie'
 
 const galleryContainer = document.querySelector('.film-card__list')
 const noResultDiv = document.querySelector('.no-result')
@@ -11,7 +12,7 @@ export default function appendGalleryMarkup(filmResult) {
     const markup = gallery(newGallery)
 
     galleryContainer.innerHTML = markup;
-   
+    buttonOnclick(filmResult)
    showRatingInLibrary(filmResult)
 }
 
