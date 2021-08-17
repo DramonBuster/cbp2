@@ -15,6 +15,8 @@ const headerImg = document.querySelector('.page-header');
 const btnMyLibrary = document.querySelector('.library');
 const btnHome = document.querySelector('.home');
 const paginationDiv = document.querySelector('.tui-pagination');
+//убираем нотификацию при клике на кнопки
+const notification = document.querySelector('.notification');
 
 let queryParams = `trending/movie/week?api_key=27c4b211807350ab60580c41abf1bb8c`;
 
@@ -24,6 +26,7 @@ buttonHome.addEventListener('click', () => {
   headerImg.classList.add('page-header');
   buttonsLibrary.classList.add('is-hidden');
   form.classList.remove('is-hidden');
+  showNotification()
   showPopularFilm(queryParams);
   // changeMainThemeHeader();
   btnQueueInHeader.classList.remove('current');
@@ -37,6 +40,7 @@ logoLink.addEventListener('click', () => {
   buttonsLibrary.classList.add('is-hidden');
   form.classList.remove('is-hidden');
   showPopularFilm(queryParams);
+  showNotification()
   changeMainThemeHeader();
 
   btnQueueInHeader.classList.remove('current');
@@ -70,6 +74,13 @@ function changeMainThemeHeader() {
 }
 
 showPopularFilm(queryParams);
+
+//убираем нотификацию при клике на кнопки
+function showNotification() {
+      console.log('Показываю предупреждение')
+          notification.classList.add('is-hidden');
+          // paginationDiv.classList.remove('is-hidden');
+        }
 //запускаем пагинацию страницы
 
 // /**
