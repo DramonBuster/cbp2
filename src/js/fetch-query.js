@@ -23,6 +23,7 @@ function serchFilms(e) {
       if (films.results.length === 0) {
          
         notification.classList.remove('is-hidden');
+        noResultDiv.classList.remove('is-hidden');
         paginationDiv.classList.add('is-hidden');
     
         setTimeout(showNotification, 6000);
