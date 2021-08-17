@@ -67,7 +67,7 @@ body.modal-open {
 
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 500ms $timing-fn;
-  // overflow-y: scroll;
+  overflow-y: scroll;
 
   z-index: 1;
 
@@ -98,28 +98,28 @@ body.modal-open {
   position: absolute;
   z-index: 100;
 
-  top: 50%;
+  top: 20px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
 
   min-width: 280px;
-  min-height: 958px;
+  //в мобильной версии тянет экран вниз непропорционально - закоммичено
+  // min-height: 958px;
   padding-top: 48px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 41px;
 
-  max-height: 90vh;
-
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
-
-  //outline: green solid 1px;
 
   background-color: #fff;
 
   @media screen and (min-width: 768px) {
     display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     padding-top: 42px;
     padding-left: 28px;
@@ -145,6 +145,8 @@ body.modal-open {
 // }
 
 .modal__thumb {
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 30px;
   width: 240px;
   height: 357px;
@@ -162,10 +164,12 @@ body.modal-open {
     height: 478px;
   }
 }
+
+//заменил object-fit: contain чтобы не срезало часть картинки в модалке!! не менять обратно на cover
 .modal__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 5px;
 }
 

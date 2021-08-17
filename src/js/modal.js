@@ -2,7 +2,7 @@ import getFilms from './fetch-popular';
 import modalFilm from '../templates/modal.hbs';
 import appendGalleryMarkup from './drow-marckup';
 // import cardForFilm from '../templates/film-card.hbs';
-import { paginationLibraryFilms } from './pagination';
+import { paginationQueueFilms, paginationWatchedFilms } from './pagination';
 
 let btnWachedInModal;
 let btnQueueInModal;
@@ -14,12 +14,16 @@ const modal = document.querySelector('.modal');
 const body = document.querySelector('body');
 const LOCALSTORAGE_WATCHED = 'watched';
 const LOCALSTORAGE_QUEUE = 'queue';
+const noResultDiv = document.querySelector('.no-result');
 
 // Запуск библиотеки по кнопке MY LIBRUARY
 const btnMyLibrary = document.querySelector('.library');
 const cardList = document.querySelector('.film-card__list');
 const libButtons = document.querySelector('.library-nav');
 const form = document.querySelector('.form');
+const paginationDiv = document.querySelector('.tui-pagination');
+//убираем нотификацию при клике на кнопки
+const notification = document.querySelector('.notification');
 
 // export to popular
 export const btnWatchedInHeader = document.querySelector('button[data-info="watched"]');
@@ -225,14 +229,13 @@ btnMyLibrary.addEventListener('click', evt => {
   // По нажатию кнопки МАЙ ЛИБ скрываем или открываем нужные элементы хедера
   libButtons.classList.remove('is-hidden');
   form.classList.add('is-hidden');
+  // убираем нотификацию при переключении
+   showNotification()
 
   // Вешаем слушателей на кнопки и запускаем функцию отрисовки новой галереи
   btnWatchedInHeader.addEventListener('click', onMadeWatchedGallery);
   btnQueueInHeader.addEventListener('click', onMadeQueueGallery);
   onMadeQueueGallery();
-
-  // Добавляет пагинацию
-  paginationLibraryFilms();
 });
 
 function onMadeWatchedGallery() {
@@ -244,6 +247,9 @@ function onMadeWatchedGallery() {
     localStorage.getItem(LOCALSTORAGE_WATCHED) === null ||
     JSON.parse(localStorage.getItem(LOCALSTORAGE_WATCHED) === '[]')
   ) {
+    // Скрывает кнопки, если библиотека пуста
+    paginationDiv.classList.add('is-hidden');
+    noResultDiv.classList.remove('is-hidden');
     return;
   }
 
@@ -258,8 +264,10 @@ function onMadeWatchedGallery() {
   //   console.log(film, `gjhvjhv`);
   // });
   // console.log(a, `wowwo`);
-  appendGalleryMarkup(savedWatchedFilmsInLocalStorage);
+  appendGalleryMarkup(savedWatchedFilmsInLocalStorage.slice(0, 20));
   // cardList.innerHTML = cardForFilm(savedWatchedFilmsInLocalStorage);
+  // Пагинация для просмотренных фильмов
+  paginationWatchedFilms();
 }
 
 function onMadeQueueGallery() {
@@ -271,6 +279,9 @@ function onMadeQueueGallery() {
     localStorage.getItem(LOCALSTORAGE_QUEUE) === null ||
     JSON.parse(localStorage.getItem(LOCALSTORAGE_QUEUE) === '[]')
   ) {
+    // Скрывает кнопки, если библиотека пуста
+    paginationDiv.classList.add('is-hidden');
+    noResultDiv.classList.remove('is-hidden');
     return;
   }
 
@@ -289,5 +300,14 @@ function onMadeQueueGallery() {
    * КОНЕЦ ВРЕМЕННОГО РЕШЕНИЯ
    */
   // cardList.innerHTML = cardForFilm(savedQueueFilmsInLocalStorage);
-  appendGalleryMarkup(savedQueueFilmsInLocalStorage);
+  // appendGalleryMarkup(savedQueueFilmsInLocalStorage);
+  appendGalleryMarkup(savedQueueFilmsInLocalStorage.slice(0, 20));
+  //  Пагинация для фильмов в очереди
+  paginationQueueFilms();
 }
+//убираем нотификацию при клике на кнопки
+function showNotification() {
+      console.log('Показываю предупреждение')
+          notification.classList.add('is-hidden');
+          // paginationDiv.classList.remove('is-hidden');
+        }
