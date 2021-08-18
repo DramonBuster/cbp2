@@ -1,0 +1,45 @@
+.filter {
+  padding-top: 10px;
+}
+.filter__genres {
+  padding: 2px 2px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.333;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  border-radius: 5px;
+  border: 1px solid #8c8c8c;
+
+  color: #ff6b01;
+  &:focus {
+    outline: none;
+  }
+}
+
+.filter__genres--option {
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  text-transform: none;
+  color: #8c8c8c;
+
+  @media screen and (min-width: 1024px) {
+    margin: 0;
+  }
+}
+
+.filter__notification {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  // background-color: rgba(0, 0, 0, 0.05);
+}
+
+.filter__notification--text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.333;
+  color: #000000;
+}
