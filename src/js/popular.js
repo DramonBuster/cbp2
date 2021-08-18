@@ -6,6 +6,8 @@ import gallery from '../templates/film-card.hbs';
 import genres from './genres.json';
 import appendGalleryMarkup from './drow-marckup';
 import { btnWatchedInHeader, btnQueueInHeader } from './modal.js';
+import { clearFilter } from './filter';
+import {filterPopular} from './filter';
 
 const logoLink = document.querySelector('.logo__link');
 const buttonHome = document.querySelector('.page-header__btn');
@@ -15,10 +17,6 @@ const headerImg = document.querySelector('.page-header');
 const btnMyLibrary = document.querySelector('.library');
 const btnHome = document.querySelector('.home');
 const paginationDiv = document.querySelector('.tui-pagination');
-const filterLibraryQueue = document.getElementById("filter-library-queue");
-const filterLibraryWatched = document.getElementById("filter-library-watched");
-const filterPopular = document.getElementById("filter-popular");
-const filterMessage = document.querySelector('.filter__notification');
 //убираем нотификацию при клике на кнопки
 const notification = document.querySelector('.notification');
 
@@ -36,13 +34,10 @@ buttonHome.addEventListener('click', () => {
   btnQueueInHeader.classList.remove('current');
   btnWatchedInHeader.classList.remove('current');
   // for modal up
-  //убирает фильтр библиотеки
-  filterLibraryQueue.classList.add('is-hidden');
-  filterLibraryWatched.classList.add('is-hidden');
-  //добавляет фильтр популярных
-  filterPopular.classList.remove('is-hidden');
-  //убирает сообщение о выбранном жанре фильма
-  filterMessage.classList.add('is-hidden');
+  //убирает фильтр
+  clearFilter();
+  //фильтр по жанру
+  filterPopular() 
 });
 //слушатель на ссылке
 logoLink.addEventListener('click', () => {
@@ -56,13 +51,10 @@ logoLink.addEventListener('click', () => {
 
   btnQueueInHeader.classList.remove('current');
   btnWatchedInHeader.classList.remove('current');
-  //убирает фильтр библиотеки
-  filterLibraryQueue.classList.add('is-hidden');
-  filterLibraryWatched.classList.add('is-hidden');
-  //добавляет фильтр популярных
-  filterPopular.classList.remove('is-hidden');
-  //убирает сообщение о выбранном жанре фильма
-  filterMessage.classList.add('is-hidden');
+  //убирает фильтр
+  clearFilter();
+  //фильтр по жанру
+  filterPopular() 
 });
 
 export function showPopularFilm(queryParams) {
@@ -78,6 +70,8 @@ export function showPopularFilm(queryParams) {
       appendGalleryMarkup(totalResult);
     })
     .catch(error => console.log(error));
+    //фильтр по жанру
+    filterPopular() 
     setTimeout(() => {
       paginationPopularFilms();
     }, 300);

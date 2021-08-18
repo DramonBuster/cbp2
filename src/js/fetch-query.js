@@ -1,6 +1,7 @@
 import getFilms from './fetch-popular';
 import appendGalleryMarkup from './drow-marckup';
 import { paginationSearchFilms } from './pagination';
+import {clearFilter } from './filter';
 
 const form = document.querySelector('.form');
 // const input = document.querySelector('.form__input');
@@ -8,10 +9,7 @@ const galleryContainer = document.querySelector('.film-card__list');
 const notification = document.querySelector('.notification');
 const paginationDiv = document.querySelector('.tui-pagination');
 const noResultDiv = document.querySelector('.no-result');
-const filterLibraryQueue = document.getElementById("filter-library-queue");
-const filterLibraryWatched = document.getElementById("filter-library-watched");
-const filterPopular = document.getElementById("filter-popular");
-const filterMessage = document.querySelector('.filter__notification');
+
 form.addEventListener('submit', serchFilms);
 
 function serchFilms(e) {
@@ -20,13 +18,7 @@ function serchFilms(e) {
   //
   e.preventDefault();
   clearGallery();
-  //убирает фильтр библиотеки
-  filterLibraryQueue.classList.add('is-hidden');
-  filterLibraryWatched.classList.add('is-hidden');
-  //убирает фильтр популярных
-  filterPopular.classList.add('is-hidden');
-  //убирает сообщение о выбранном жанре фильма
-  filterMessage.classList.add('is-hidden');
+  clearFilter()
   //cкрываем нотификацию
   showNotification()
   const currentTarget = e.target.elements.searchQuery.value.trim();
@@ -65,13 +57,14 @@ function serchFilms(e) {
   form.reset();
 }
 
-function clearGallery() {
+export function clearGallery() {
   galleryContainer.innerHTML = ' ';
 }
 
 function createGallery(queryCards) {
   appendGalleryMarkup(queryCards);
 }
+
 function showNotification() {
   console.log('Показываю предупреждение');
   notification.classList.add('is-hidden');
