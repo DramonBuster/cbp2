@@ -243,7 +243,7 @@ btnMyLibrary.addEventListener('click', evt => {
   onMadeQueueGallery();
 });
 
-function onMadeWatchedGallery() {
+export function onMadeWatchedGallery() {
   cardList.innerHTML = '';
 
   btnQueueInHeader.classList.remove('current');
@@ -283,7 +283,7 @@ function onMadeWatchedGallery() {
   filterMessage.classList.add('is-hidden');
 }
 
-function onMadeQueueGallery() {
+export function onMadeQueueGallery() {
   cardList.innerHTML = '';
 
   btnWatchedInHeader.classList.remove('current');

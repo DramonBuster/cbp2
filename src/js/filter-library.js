@@ -1,5 +1,7 @@
 
 import appendGalleryMarkup from './drow-marckup';
+import { onMadeWatchedGallery } from './modal';
+import { onMadeQueueGallery } from './modal';
 import { paginationFilterQueueFilms } from './pagination';
 import { paginationFilterWatchedFilms } from './pagination';
 
@@ -16,6 +18,11 @@ genreFilterLibraryQueue.addEventListener("change", onSearchFilmsByGenreQueueFilm
 function onSearchFilmsByGenreQueueFilms() {
     clearGallery();
     const genreInput = genreFilterLibraryQueue.value;
+    if (genreInput === "Any") {
+        console.log("any");
+        onMadeQueueGallery();
+        return;
+    }
     let arrayForDraw = [];
     const queueFilms = JSON.parse(localStorage.queue);
     
@@ -55,7 +62,9 @@ function onSearchFilmsByGenreWatchedFilms() {
     let arrayForDraw = [];
     const watchedFilms = JSON.parse(localStorage.watched);
     if (genreInput === "Any") {
-        console.log("any")
+        console.log("any");
+        onMadeWatchedGallery();
+        return;
     }
     
     for (const film of watchedFilms) {
