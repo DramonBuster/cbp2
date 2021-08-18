@@ -4,7 +4,7 @@ import appendGalleryMarkup from './drow-marckup';
 // import cardForFilm from '../templates/film-card.hbs';
 import { paginationQueueFilms, paginationWatchedFilms } from './pagination';
 
-import { filterQueue, filterWatched} from './filter';
+import { filterQueue, filterWatched, clearFilter} from './filter';
 
 let btnWachedInModal;
 let btnQueueInModal;
@@ -18,10 +18,7 @@ const LOCALSTORAGE_WATCHED = 'watched';
 const LOCALSTORAGE_QUEUE = 'queue';
 const noResultDiv = document.querySelector('.no-result');
 let btn = document.querySelector('#toTop');
-const filterLibraryQueue = document.getElementById("filter-library-queue");
-const filterLibraryWatched = document.getElementById("filter-library-watched");
-const filterPopular = document.getElementById("filter-popular");
-const filterMessage = document.querySelector('.filter__notification');
+const noResultDivFilter = document.querySelector('.filter-message');
 
 
 // Запуск библиотеки по кнопке MY LIBRUARY
@@ -259,6 +256,8 @@ export function onMadeWatchedGallery() {
     // Скрывает кнопки, если библиотека пуста
     paginationDiv.classList.add('is-hidden');
     noResultDiv.classList.remove('is-hidden');
+    //убираем фильтр
+    clearFilter();
     return;
   }
 
@@ -279,6 +278,7 @@ export function onMadeWatchedGallery() {
   paginationWatchedFilms();
   //рисуем фильтр по жанрам
   filterWatched();
+  noResultDivFilter.classList.add('is-hidden');
 }
 
 export function onMadeQueueGallery() {
@@ -293,6 +293,8 @@ export function onMadeQueueGallery() {
     // Скрывает кнопки, если библиотека пуста
     paginationDiv.classList.add('is-hidden');
     noResultDiv.classList.remove('is-hidden');
+    //убираем фильтр
+    clearFilter();
     return;
   }
 
@@ -317,6 +319,7 @@ export function onMadeQueueGallery() {
   paginationQueueFilms();
   //рисуем фильтр по жанрам
   filterQueue();
+  noResultDivFilter.classList.add('is-hidden');
 }
 //убираем нотификацию при клике на кнопки
 function showNotification() {
