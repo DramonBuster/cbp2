@@ -46,39 +46,36 @@ h4 {
 }
 
 .team__lightbox {
-  position: fixed;
-  top: 0;
-  display: flex;
+  @media screen and (min-width: 320px) {
+    position: fixed;
+    top: 0;
+    display: flex;
 
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
 
-  width: 100vw;
-  height: 100vh;
+    width: 100vw;
+    height: 100vh;
 
-  // @media screen and (min-width: 1024px) {
-  // }
-
-  //   position: fixed;
-  background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow-y: scroll;
+  }
 }
 
 .team__modal {
   position: relative;
 
   width: 280px;
-  height: auto;
+  height: 1860px;
 
   padding: 15px;
 
   justify-content: center;
-  align-items: center;
 
   background-color: #ffffff;
 
   @media screen and (min-width: 768px) {
     width: 618px;
-    height: auto;
+    height: 990px;
   }
 
   @media screen and (min-width: 1024px) {
@@ -146,6 +143,8 @@ h4 {
     0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
   @media screen and (min-width: 768px) {
+    flex-basis: calc(100% / 2 - 20px);
+
     margin-left: 20px;
     margin-top: 20px;
 
@@ -182,6 +181,6 @@ h4 {
   padding-bottom: 3px;
 }
 
-.footer__icon {
+.footer__team {
   cursor: pointer;
 }

@@ -1,11 +1,13 @@
-const btnHeart = document.querySelector('.footer__icon');
+const btnShowTeam = document.querySelector('.footer__team');
 const lightBox = document.querySelector('.team__lightbox');
 const btnTeamModalClose = document.querySelector('.team__modal--close');
+const body = document.querySelector('body');
 
-btnHeart.addEventListener('click', onTeamModalOpen);
+btnShowTeam.addEventListener('click', onTeamModalOpen);
 
 function onTeamModalOpen() {
   lightBox.classList.remove('is-hidden');
+  body.classList.add('modal-open');
 
   btnTeamModalClose.addEventListener('click', onTeamModalClose);
   lightBox.addEventListener('click', evt => {
@@ -35,4 +37,5 @@ function onTeamModalClose() {
   });
 
   lightBox.classList.add('is-hidden');
+  body.classList.remove('modal-open');
 }

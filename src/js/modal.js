@@ -230,7 +230,7 @@ btnMyLibrary.addEventListener('click', evt => {
   libButtons.classList.remove('is-hidden');
   form.classList.add('is-hidden');
   // убираем нотификацию при переключении
-   showNotification()
+  showNotification();
 
   // Вешаем слушателей на кнопки и запускаем функцию отрисовки новой галереи
   btnWatchedInHeader.addEventListener('click', onMadeWatchedGallery);
@@ -307,7 +307,7 @@ function onMadeQueueGallery() {
 }
 //убираем нотификацию при клике на кнопки
 function showNotification() {
-      console.log('Показываю предупреждение')
-          notification.classList.add('is-hidden');
-          // paginationDiv.classList.remove('is-hidden');
-        }
+  console.log('Показываю предупреждение');
+  notification.classList.add('is-hidden');
+  // paginationDiv.classList.remove('is-hidden');
+}
