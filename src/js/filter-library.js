@@ -5,9 +5,8 @@ import { paginationFilterWatchedFilms } from './pagination';
 
 const galleryContainer = document.querySelector('.film-card__list');
 const filterNotification = document.querySelector('.filter__notification');
-const filterLibraryQueue = document.getElementById("filter-library-queue");
-const filterLibraryWatched = document.getElementById("filter-library-watched");
-const filterMessage = document.querySelector('.filter__notification');
+const noResultDiv = document.querySelector('.no-result');
+const paginationDiv = document.querySelector('.tui-pagination');
 
 const genreFilterLibraryQueue = document.getElementById("filter-library-queue");
 const genreFilterLibraryWatched = document.getElementById("filter-library-watched");
@@ -32,6 +31,8 @@ function onSearchFilmsByGenreQueueFilms() {
         //filterMessage.classList.add('is-hidden');
         filterNotification.textContent = `No movies in the genre of ${genreInput}`
         filterNotification.classList.remove('is-hidden');
+        noResultDiv.classList.remove('is-hidden');
+        paginationDiv.classList.add('is-hidden');
         return;
     } else {
         appendGalleryMarkup(arrayForDraw.slice(0, 20));
@@ -69,6 +70,8 @@ function onSearchFilmsByGenreWatchedFilms() {
         // filterMessage.classList.add('is-hidden');
         filterNotification.textContent = `No movies in the genre of ${genreInput}`
         filterNotification.classList.remove('is-hidden');
+        noResultDiv.classList.remove('is-hidden');
+        paginationDiv.classList.add('is-hidden');
         return;
     } else {
         appendGalleryMarkup(arrayForDraw.slice(0, 20));
