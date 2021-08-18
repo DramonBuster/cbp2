@@ -4,6 +4,7 @@ import { onMadeQueueGallery } from './modal';
 import { paginationFilterQueueFilms } from './pagination';
 import { paginationFilterWatchedFilms } from './pagination';
 import tplFilterQueue from '../templates/filter-library-queue.hbs';
+import tplFilterWatched from '../templates/filter-library-watched.hbs';
 
 const galleryContainer = document.querySelector('.film-card__list');
 const noResultDiv = document.querySelector('.no-result');
@@ -26,7 +27,6 @@ export function filterQueue () {
 function onSearchByGenreQueueFilms() {
     const genreFilterLibraryQueue = document.getElementById("filter-library-queue");
     const filterNotification = document.querySelector('.filter__notification');
-    console.log(filterNotification);
     clearGallery();
     //получаем значение выбора в фильтре
     const genreInput = genreFilterLibraryQueue.value;
@@ -44,8 +44,6 @@ function onSearchByGenreQueueFilms() {
     }
     //если фильмы по жанру не найдены
     if (arrayForDraw.length === 0) {
-        console.log("empty");
-        //genreFilterLibraryQueue.classList.add('is-hidden');
         //filterMessage.classList.add('is-hidden');
         filterNotification.textContent = `No movies in the genre of ${genreInput}`
         filterNotification.classList.remove('is-hidden');
@@ -70,35 +68,35 @@ export function filterWatched() {
     //очищаем div фильтра
     filter.innerHTML = ' ';
     //рисуем новый фильтр
-    const filterForLibraryQueue = tplFilterQueue();
-    filter.insertAdjacentHTML('beforeend', filterForLibraryQueue);
-    const genreFilterLibraryQueue = document.getElementById("filter-library-queue");
+    const filterForLibraryWatched = tplFilterWatched();
+    filter.insertAdjacentHTML('beforeend', filterForLibraryWatched);
+    const genreFilterLibraryWatched = document.getElementById("filter-library-watched");
    // console.log("filter", genreFilterLibraryQueue)
     //вешаем слушатель на фильтр
-    genreFilterLibraryQueue.addEventListener("change", onSearchByGenreQueueFilms);
+    genreFilterLibraryWatched.addEventListener("change", onSearchByGenreWatchedFilms);
 }
-//слушатель фильтра просмотренных фильмов
-// genreFilterLibraryWatched.addEventListener("change", onSearchFilmsByGenreWatchedFilms);
-function onSearchFilmsByGenreWatchedFilms() {
-    clearGallery();
+
+//поиск просмотренных фильмов по жанру
+function onSearchByGenreWatchedFilms() {
     const genreFilterLibraryWatched = document.getElementById("filter-library-watched");
+    const filterNotification = document.querySelector('.filter__notification');
+    clearGallery();
+    //получаем значение выбора в фильтре
     const genreInput = genreFilterLibraryWatched.value;
-    let arrayForDraw = [];
-    const watchedFilms = JSON.parse(localStorage.watched);
     if (genreInput === "Any") {
         onMadeWatchedGallery();
         return;
     }
-    
+    //создаем новый массив фильмов, которые содержат нужный жанр
+    let arrayForDraw = [];
+    const watchedFilms = JSON.parse(localStorage.watched);
     for (const film of watchedFilms) {
         if (film.genres.includes(genreInput)) {
             arrayForDraw.push(film);
         }
     }
-    console.log(arrayForDraw);
+    //если фильмы по жанру не найдены
     if (arrayForDraw.length === 0) {
-        console.log("empty");
-        // genreFilterLibraryQueue.classList.add('is-hidden');
         // filterMessage.classList.add('is-hidden');
         filterNotification.textContent = `No movies in the genre of ${genreInput}`
         filterNotification.classList.remove('is-hidden');
