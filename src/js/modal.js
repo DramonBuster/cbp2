@@ -15,6 +15,10 @@ const body = document.querySelector('body');
 const LOCALSTORAGE_WATCHED = 'watched';
 const LOCALSTORAGE_QUEUE = 'queue';
 const noResultDiv = document.querySelector('.no-result');
+const filterLibraryQueue = document.getElementById("filter-library-queue");
+const filterLibraryWatched = document.getElementById("filter-library-watched");
+const filterPopular = document.getElementById("filter-popular");
+const filterMessage = document.querySelector('.filter__notification');
 
 // Запуск библиотеки по кнопке MY LIBRUARY
 const btnMyLibrary = document.querySelector('.library');
@@ -235,10 +239,11 @@ btnMyLibrary.addEventListener('click', evt => {
   // Вешаем слушателей на кнопки и запускаем функцию отрисовки новой галереи
   btnWatchedInHeader.addEventListener('click', onMadeWatchedGallery);
   btnQueueInHeader.addEventListener('click', onMadeQueueGallery);
+  filterPopular.classList.add('is-hidden');
   onMadeQueueGallery();
 });
 
-function onMadeWatchedGallery() {
+export function onMadeWatchedGallery() {
   cardList.innerHTML = '';
 
   btnQueueInHeader.classList.remove('current');
@@ -250,6 +255,9 @@ function onMadeWatchedGallery() {
     // Скрывает кнопки, если библиотека пуста
     paginationDiv.classList.add('is-hidden');
     noResultDiv.classList.remove('is-hidden');
+    //убирает фильтр
+    filterLibraryQueue.classList.add('is-hidden');
+    filterLibraryWatched.classList.add('is-hidden');
     return;
   }
 
@@ -268,9 +276,14 @@ function onMadeWatchedGallery() {
   // cardList.innerHTML = cardForFilm(savedWatchedFilmsInLocalStorage);
   // Пагинация для просмотренных фильмов
   paginationWatchedFilms();
+  //добавляет фильтр просмотренных фильмов
+  filterLibraryWatched.classList.remove('is-hidden');
+  //убирает фильтр фильмов в очереди
+  filterLibraryQueue.classList.add('is-hidden');
+  filterMessage.classList.add('is-hidden');
 }
 
-function onMadeQueueGallery() {
+export function onMadeQueueGallery() {
   cardList.innerHTML = '';
 
   btnWatchedInHeader.classList.remove('current');
@@ -282,6 +295,9 @@ function onMadeQueueGallery() {
     // Скрывает кнопки, если библиотека пуста
     paginationDiv.classList.add('is-hidden');
     noResultDiv.classList.remove('is-hidden');
+    //убирает фильтр 
+    filterLibraryQueue.classList.add('is-hidden');
+    filterLibraryWatched.classList.add('is-hidden');
     return;
   }
 
@@ -304,6 +320,11 @@ function onMadeQueueGallery() {
   appendGalleryMarkup(savedQueueFilmsInLocalStorage.slice(0, 20));
   //  Пагинация для фильмов в очереди
   paginationQueueFilms();
+  //добавляет фильтр фильмов в очереди
+  filterLibraryQueue.classList.remove('is-hidden');
+  //убирает фильтр просмотренных фильмов
+  filterLibraryWatched.classList.add('is-hidden');
+  filterMessage.classList.add('is-hidden');
 }
 //убираем нотификацию при клике на кнопки
 function showNotification() {
