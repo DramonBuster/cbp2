@@ -4,7 +4,7 @@ import appendGalleryMarkup from './drow-marckup';
 // import cardForFilm from '../templates/film-card.hbs';
 import { paginationQueueFilms, paginationWatchedFilms } from './pagination';
 
-import { filterQueue, filterWatched} from './filter-library';
+import { filterQueue, filterWatched} from './filter';
 
 let btnWachedInModal;
 let btnQueueInModal;

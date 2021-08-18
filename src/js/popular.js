@@ -6,8 +6,8 @@ import gallery from '../templates/film-card.hbs';
 import genres from './genres.json';
 import appendGalleryMarkup from './drow-marckup';
 import { btnWatchedInHeader, btnQueueInHeader } from './modal.js';
-import { clearFilter } from './filter-library';
-import {filterPopular} from './filter-library';
+import { clearFilter } from './filter';
+import {filterPopular} from './filter';
 
 const logoLink = document.querySelector('.logo__link');
 const buttonHome = document.querySelector('.page-header__btn');

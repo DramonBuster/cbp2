@@ -13,5 +13,5 @@ import './add-to';
 import './load-spinner';
 import './to-top';
 import './modal-team';
-import './filter-popular';
-import './filter-library';
+import './filter';
+

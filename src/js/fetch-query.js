@@ -1,7 +1,7 @@
 import getFilms from './fetch-popular';
 import appendGalleryMarkup from './drow-marckup';
 import { paginationSearchFilms } from './pagination';
-import {clearFilter } from './filter-library';
+import {clearFilter } from './filter';
 
 const form = document.querySelector('.form');
 // const input = document.querySelector('.form__input');
