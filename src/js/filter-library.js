@@ -28,8 +28,10 @@ function onSearchFilmsByGenreQueueFilms() {
     console.log(arrayForDraw);
     if (arrayForDraw.length === 0) {
         console.log("empty");
-        genreFilterLibraryQueue.classList.add('is-hidden');
-        filterMessage.classList.add('is-hidden');
+        //genreFilterLibraryQueue.classList.add('is-hidden');
+        //filterMessage.classList.add('is-hidden');
+        filterNotification.textContent = `No movies in the genre of ${genreInput}`
+        filterNotification.classList.remove('is-hidden');
         return;
     } else {
         appendGalleryMarkup(arrayForDraw.slice(0, 20));
@@ -63,8 +65,10 @@ function onSearchFilmsByGenreWatchedFilms() {
     console.log(arrayForDraw);
     if (arrayForDraw.length === 0) {
         console.log("empty");
-        genreFilterLibraryQueue.classList.add('is-hidden');
-        filterMessage.classList.add('is-hidden');
+        // genreFilterLibraryQueue.classList.add('is-hidden');
+        // filterMessage.classList.add('is-hidden');
+        filterNotification.textContent = `No movies in the genre of ${genreInput}`
+        filterNotification.classList.remove('is-hidden');
         return;
     } else {
         appendGalleryMarkup(arrayForDraw.slice(0, 20));
