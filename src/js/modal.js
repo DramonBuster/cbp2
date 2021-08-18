@@ -15,6 +15,7 @@ const body = document.querySelector('body');
 const LOCALSTORAGE_WATCHED = 'watched';
 const LOCALSTORAGE_QUEUE = 'queue';
 const noResultDiv = document.querySelector('.no-result');
+let btn = document.querySelector('#toTop');
 const filterLibraryQueue = document.getElementById("filter-library-queue");
 const filterLibraryWatched = document.getElementById("filter-library-watched");
 const filterPopular = document.getElementById("filter-popular");
@@ -38,7 +39,7 @@ cards.addEventListener('click', onModalOpen);
 
 function onModalOpen(evt) {
   evt.preventDefault();
-
+  
   if (evt.target.nodeName !== 'IMG') {
     return;
   }
@@ -48,7 +49,7 @@ function onModalOpen(evt) {
   backdrop.classList.remove('is-hidden');
   modal.classList.remove('is-hidden');
   body.classList.add('modal-open');
-
+   btn.classList.remove('show');
   backdrop.addEventListener('click', evt => {
     if (!evt.target.classList.contains('backdrop')) {
       return;
@@ -212,6 +213,7 @@ function onAddRemoveQueueToLocalStorage(evt, openedFilm) {
 }
 
 function onModalClose(evt) {
+  //  btn.classList.add('show');
   if (btnQueueInHeader.classList.contains('current')) {
     if (btnQueueInModal.dataset.action === 'add') {
       onMadeQueueGallery();

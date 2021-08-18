@@ -2,6 +2,7 @@ const btnShowTeam = document.querySelector('.footer__team');
 const lightBox = document.querySelector('.team__lightbox');
 const btnTeamModalClose = document.querySelector('.team__modal--close');
 const body = document.querySelector('body');
+let btn = document.querySelector('#toTop');
 
 btnShowTeam.addEventListener('click', onTeamModalOpen);
 
