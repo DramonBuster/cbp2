@@ -10,8 +10,9 @@ import { onMadeWatchedGallery } from './modal';
 import { onMadeQueueGallery } from './modal';
 import { paginationFilterQueueFilms, paginationFilterWatchedFilms,paginationFilterPopularFilms } from './pagination';
 
-const noResultDiv = document.querySelector('.no-result');
+const noResultDiv = document.querySelector('.filter-message');
 const paginationDiv = document.querySelector('.tui-pagination');
+const noResultGenre = document.querySelector('.no-result__genre');
 
 //создаем фильтр популярных фильмов
 export function filterPopular() {
@@ -56,6 +57,7 @@ function onSearchByGenrePopularFilms() {
 //создаем фильтр фильмов в очереди
 export function filterQueue() {
     clearFilter()
+    noResultDiv.classList.add('is-hidden');
     const filter = document.querySelector('.filter');
     //рисуем новый фильтр
     const filterForLibraryQueue = tplFilterQueue();
@@ -87,9 +89,8 @@ function onSearchByGenreQueueFilms() {
     }
     //если фильмы по жанру не найдены
     if (arrayForDraw.length === 0) {
-        //filterMessage.classList.add('is-hidden');
-        filterNotification.textContent = `No movies in the genre of ${genreInput}`
-        filterNotification.classList.remove('is-hidden');
+        filterNotification.classList.add('is-hidden');
+        noResultGenre.textContent = `${genreInput}`;
         noResultDiv.classList.remove('is-hidden');
         paginationDiv.classList.add('is-hidden');
         return;
@@ -109,6 +110,7 @@ function onSearchByGenreQueueFilms() {
 //создаем фильтр просмотренных фильмов
 export function filterWatched() {
     clearFilter()
+    noResultDiv.classList.add('is-hidden');
     const filter = document.querySelector('.filter');
     //рисуем новый фильтр
     const filterForLibraryWatched = tplFilterWatched();
@@ -140,9 +142,8 @@ function onSearchByGenreWatchedFilms() {
     }
     //если фильмы по жанру не найдены
     if (arrayForDraw.length === 0) {
-        // filterMessage.classList.add('is-hidden');
-        filterNotification.textContent = `No movies in the genre of ${genreInput}`
-        filterNotification.classList.remove('is-hidden');
+        filterNotification.classList.add('is-hidden');
+        noResultGenre.textContent = `${genreInput}`;
         noResultDiv.classList.remove('is-hidden');
         paginationDiv.classList.add('is-hidden');
         return;
