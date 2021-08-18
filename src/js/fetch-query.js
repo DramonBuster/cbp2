@@ -11,6 +11,9 @@ const noResultDiv = document.querySelector('.no-result');
 form.addEventListener('submit', serchFilms);
 
 function serchFilms(e) {
+  // cursor spiner
+  document.body.style.cursor = 'wait';
+  //
   e.preventDefault();
   clearGallery();
   const currentTarget = e.target.elements.searchQuery.value.trim();
@@ -19,28 +22,31 @@ function serchFilms(e) {
   console.log(queryParams);
   getFilms(queryParams)
     .then(films => {
-   
       if (films.results.length === 0) {
-         
         notification.classList.remove('is-hidden');
         paginationDiv.classList.add('is-hidden');
-    
+
         setTimeout(showNotification, 6000);
         return;
       }
       noResultDiv.classList.add('is-hidden');
-      paginationDiv.classList.remove('is-hidden');        
+      paginationDiv.classList.remove('is-hidden');
       const movies = films.total_results;
       localStorage.setItem('movies', movies);
       const queryCards = films.results;
       createGallery(queryCards);
-      
+
       // console.log(films.results, `gfdhg`);
     })
     .catch(error => console.log(error));
-    //запускаем пагинацию фильмов по названию
+  // end cursor spinner
   setTimeout(() => {
-    paginationSearchFilms()
+    document.body.style.cursor = 'default';
+  }, 100);
+  //
+  //запускаем пагинацию фильмов по названию
+  setTimeout(() => {
+    paginationSearchFilms();
   }, 300);
   form.reset();
 }
@@ -53,7 +59,7 @@ function createGallery(queryCards) {
   appendGalleryMarkup(queryCards);
 }
 function showNotification() {
-      console.log('Показываю предупреждение')
-          notification.classList.add('is-hidden');
-          // paginationDiv.classList.remove('is-hidden');
-        }
+  console.log('Показываю предупреждение');
+  notification.classList.add('is-hidden');
+  // paginationDiv.classList.remove('is-hidden');
+}
