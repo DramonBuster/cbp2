@@ -201,12 +201,23 @@ button.serchBtn {
   position: absolute;
   right: 0px;
   size: 16px;
+  &:hover,
+  &:focus{
+    cursor: pointer;
+  }
 }
 
 .form__icon {
+  color: #ffffff;
   position: absolute;
   right: 0px;
-
+  
+  &:hover,
+  &:focus{
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+  }
   @media screen and (min-width: 768px) {
     right: 140px;
   }
