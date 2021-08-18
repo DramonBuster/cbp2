@@ -44,7 +44,11 @@ function serchFilms(e) {
 
       // console.log(films.results, `gfdhg`);
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      paginationDiv.classList.add('is-hidden');
+      noResultDiv.classList.remove('is-hidden');
+      console.log(error);
+    });
   // end cursor spinner
   setTimeout(() => {
     document.body.style.cursor = 'default';
