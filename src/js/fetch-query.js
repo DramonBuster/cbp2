@@ -16,6 +16,8 @@ function serchFilms(e) {
   //
   e.preventDefault();
   clearGallery();
+  //cкрываем нотификацию
+  showNotification()
   const currentTarget = e.target.elements.searchQuery.value.trim();
   localStorage.setItem('input', currentTarget);
   let queryParams = `search/movie?api_key=27c4b211807350ab60580c41abf1bb8c&language=en-US&page=1&include_adult=false&query=${currentTarget}`;
@@ -24,9 +26,10 @@ function serchFilms(e) {
     .then(films => {
       if (films.results.length === 0) {
         notification.classList.remove('is-hidden');
+        noResultDiv.classList.remove('is-hidden');
         paginationDiv.classList.add('is-hidden');
-
-        setTimeout(showNotification, 6000);
+    
+        // setTimeout(showNotification, 6000);
         return;
       }
       noResultDiv.classList.add('is-hidden');
