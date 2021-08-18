@@ -240,7 +240,6 @@ btnMyLibrary.addEventListener('click', evt => {
   // Вешаем слушателей на кнопки и запускаем функцию отрисовки новой галереи
   btnWatchedInHeader.addEventListener('click', onMadeWatchedGallery);
   btnQueueInHeader.addEventListener('click', onMadeQueueGallery);
-  // filterPopular.classList.add('is-hidden');
   onMadeQueueGallery();
 });
 
@@ -256,9 +255,6 @@ export function onMadeWatchedGallery() {
     // Скрывает кнопки, если библиотека пуста
     paginationDiv.classList.add('is-hidden');
     noResultDiv.classList.remove('is-hidden');
-    //убирает фильтр
-    // filterLibraryQueue.classList.add('is-hidden');
-    // filterLibraryWatched.classList.add('is-hidden');
     return;
   }
 
@@ -279,8 +275,6 @@ export function onMadeWatchedGallery() {
   paginationWatchedFilms();
   //рисуем фильтр по жанрам
   filterWatched();
-  //убирает сообщение о найденных фильмах по жанру
-  //filterMessage.classList.add('is-hidden');
 }
 
 export function onMadeQueueGallery() {
@@ -295,9 +289,6 @@ export function onMadeQueueGallery() {
     // Скрывает кнопки, если библиотека пуста
     paginationDiv.classList.add('is-hidden');
     noResultDiv.classList.remove('is-hidden');
-    //убирает фильтр 
-    // filterLibraryQueue.classList.add('is-hidden');
-    // filterLibraryWatched.classList.add('is-hidden');
     return;
   }
 
@@ -322,8 +313,6 @@ export function onMadeQueueGallery() {
   paginationQueueFilms();
   //рисуем фильтр по жанрам
   filterQueue();
-  
-  // filterMessage.classList.add('is-hidden');
 }
 //убираем нотификацию при клике на кнопки
 function showNotification() {

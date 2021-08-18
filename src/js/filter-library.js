@@ -1,19 +1,62 @@
 import appendGalleryMarkup from './drow-marckup';
-import { onMadeWatchedGallery } from './modal';
-import { onMadeQueueGallery } from './modal';
-import { paginationFilterQueueFilms } from './pagination';
-import { paginationFilterWatchedFilms } from './pagination';
+import genres from './genres.json';
+import getFilms from './fetch-popular';
+import { showPopularFilm } from './popular';
+import { clearGallery } from './fetch-query';
+import tplFilterPopular from '../templates/filter-popular.hbs';
 import tplFilterQueue from '../templates/filter-library-queue.hbs';
 import tplFilterWatched from '../templates/filter-library-watched.hbs';
+import { onMadeWatchedGallery } from './modal';
+import { onMadeQueueGallery } from './modal';
+import { paginationFilterQueueFilms, paginationFilterWatchedFilms,paginationFilterPopularFilms } from './pagination';
 
-const galleryContainer = document.querySelector('.film-card__list');
 const noResultDiv = document.querySelector('.no-result');
 const paginationDiv = document.querySelector('.tui-pagination');
 
-export function filterQueue () {
+//создаем фильтр популярных фильмов
+export function filterPopular() {
+    clearFilter()
     const filter = document.querySelector('.filter');
-    //очищаем div фильтра
-    filter.innerHTML = ' ';
+    //рисуем новый фильтр
+    const filterForPopular = tplFilterPopular();
+    filter.insertAdjacentHTML('beforeend', filterForPopular);
+    const genreFilterPopular = document.getElementById("filter-popular");
+    //вешаем слушатель на фильтр
+    genreFilterPopular.addEventListener("change", onSearchByGenrePopularFilms);
+}
+
+//поиск популярных фильмов по жанру
+function onSearchByGenrePopularFilms() {
+    const genreFilterPopular = document.getElementById("filter-popular");
+    const filterNotification = document.querySelector('.filter__notification');
+    clearGallery();
+    const genreInput = genreFilterPopular.value;
+    if (genreInput === "Any") {
+        filterNotification.classList.add('is-hidden');
+        let queryParams = `trending/movie/week?api_key=27c4b211807350ab60580c41abf1bb8c`;
+        showPopularFilm(queryParams);
+        return;
+    }
+    const idGenre = genres.find(genre => genre.name === genreInput).id;
+    localStorage.setItem('filterGenre', idGenre);
+    let queryParams = `discover/movie?api_key=27c4b211807350ab60580c41abf1bb8c&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${idGenre}`;
+    getFilms(queryParams)
+        .then(films => {
+            const movies = films.total_results;
+            localStorage.setItem('movies', movies);
+            appendGalleryMarkup(films.results);
+        });
+   setTimeout(() => {
+       paginationFilterPopularFilms();
+   }, 300);
+    filterNotification.textContent = `Popular movies in the genre of ${genreInput}`
+    filterNotification.classList.remove('is-hidden');
+}
+
+//создаем фильтр фильмов в очереди
+export function filterQueue() {
+    clearFilter()
+    const filter = document.querySelector('.filter');
     //рисуем новый фильтр
     const filterForLibraryQueue = tplFilterQueue();
     filter.insertAdjacentHTML('beforeend', filterForLibraryQueue);
@@ -63,10 +106,10 @@ function onSearchByGenreQueueFilms() {
     
 }
 
+//создаем фильтр просмотренных фильмов
 export function filterWatched() {
+    clearFilter()
     const filter = document.querySelector('.filter');
-    //очищаем div фильтра
-    filter.innerHTML = ' ';
     //рисуем новый фильтр
     const filterForLibraryWatched = tplFilterWatched();
     filter.insertAdjacentHTML('beforeend', filterForLibraryWatched);
@@ -115,6 +158,7 @@ function onSearchByGenreWatchedFilms() {
     filterNotification.classList.remove('is-hidden');
 }
 
-function clearGallery() {
-  galleryContainer.innerHTML = ' ';
+export function clearFilter() {
+    const filter = document.querySelector('.filter');
+    filter.innerHTML = ' ';
 }
