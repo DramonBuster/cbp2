@@ -3,7 +3,8 @@ import getFilms from './fetch-popular'
 const galleryContainer = document.querySelector('.film-card__list')
 const modal = document.querySelector('.modal')
 const backdrop = document.querySelector('.backdrop')
-
+const body = document.querySelector('body');
+let btn = document.querySelector('#toTop');
 
 export default function buttonOnclick(filmResult) {
 
@@ -86,7 +87,8 @@ function putTrailerInModal(trailers, currentId) {
   appendModalMarckup(trailerFilm)
 }
 function appendModalMarckup(trailerFilm) {
-
+    btn.classList.remove('show');
+    body.classList.add('modal-open');
     modal.classList.remove('is-hidden');
     backdrop.classList.remove('is-hidden')
     const trailerKey = trailerFilm.key;
@@ -97,7 +99,7 @@ function appendModalMarckup(trailerFilm) {
      window.addEventListener('click', closeModal)
 }
 function closeModal(evt) {
-
+        
       if (evt.target.classList.contains('modal')) {
             return;
       }
@@ -109,11 +111,15 @@ function closeModal(evt) {
     }
     if (modal.classList.contains('is-hidden')) {
          modal.classList.add('is-hidden')
-        backdrop.classList.add('is-hidden')
+        backdrop.classList.add('is-hidden');
+         body.classList.remove('modal-open');
+      
+        // btn.classList.add('show');
         modal.innerHTML = ''; 
     }
       modal.classList.add('is-hidden')
       backdrop.classList.add('is-hidden')
+        body.classList.remove('modal-open');
       modal.innerHTML = ''; 
 
    
