@@ -14,6 +14,7 @@ function onSearchFilmsByGenre() {
     clearGallery();
     const genreInput = genreFilter.value;
     if (genreInput === "Any") {
+        filterNotification.classList.add('is-hidden');
         let queryParams = `trending/movie/week?api_key=27c4b211807350ab60580c41abf1bb8c`;
         showPopularFilm(queryParams);
         return;

@@ -19,7 +19,6 @@ function onSearchFilmsByGenreQueueFilms() {
     clearGallery();
     const genreInput = genreFilterLibraryQueue.value;
     if (genreInput === "Any") {
-        console.log("any");
         onMadeQueueGallery();
         return;
     }
@@ -62,7 +61,6 @@ function onSearchFilmsByGenreWatchedFilms() {
     let arrayForDraw = [];
     const watchedFilms = JSON.parse(localStorage.watched);
     if (genreInput === "Any") {
-        console.log("any");
         onMadeWatchedGallery();
         return;
     }
