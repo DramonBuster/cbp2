@@ -239,6 +239,7 @@ btnMyLibrary.addEventListener('click', evt => {
   // Вешаем слушателей на кнопки и запускаем функцию отрисовки новой галереи
   btnWatchedInHeader.addEventListener('click', onMadeWatchedGallery);
   btnQueueInHeader.addEventListener('click', onMadeQueueGallery);
+  filterPopular.classList.add('is-hidden');
   onMadeQueueGallery();
 });
 
