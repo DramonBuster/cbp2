@@ -41,7 +41,7 @@ export function paginationPopularFilms() {
         //номер страницы, на которую нажали
         const currentPage = event.page;
         let page = currentPage;
-        console.log(currentPage);
+        // console.log(currentPage);
         let queryParams = `trending/movie/week?api_key=27c4b211807350ab60580c41abf1bb8c&page=${page}`;
         getFilms(queryParams)
             .then(films => {
@@ -55,7 +55,7 @@ export function paginationPopularFilms() {
 //функция для пагинации фильмов по запросу
 export function paginationSearchFilms() {
     //проверка локалСторадж на правильное слово инпута
-    console.log("количество фильмов в локале", localStorage.movies)
+    // console.log("количество фильмов в локале", localStorage.movies)
     //в параметры пагинации вносим количество фильмов из LocalStorage
     options.totalItems = localStorage.movies;
     // только 1 страница или ничего не найдено прячем кнопки
@@ -132,7 +132,7 @@ export function paginationWatchedFilms() {
   pagination.on('afterMove', (event) => {
     const currentPage = event.page;
     const watchedFilms = JSON.parse(localStorage.watched);
-    console.log(watchedFilms);
+    // console.log(watchedFilms);
     const totalWatchedFilms = watchedFilms.length;
     const totalPages = totalWatchedFilms / 20;
     //создаем массив объектов со свойствами для резки массива фильмов
@@ -151,7 +151,7 @@ export function paginationWatchedFilms() {
 //функция для пагинации популярных фильмов по фильтрам
 export function paginationFilterPopularFilms() {
     //проверка локалСторадж на правильное слово инпута
-    console.log("количество фильмов в локале", localStorage.movies)
+    // console.log("количество фильмов в локале", localStorage.movies)
     //в параметры пагинации вносим количество фильмов из LocalStorage
     options.totalItems = localStorage.movies;
     // только 1 страница или ничего не найдено прячем кнопки
@@ -187,7 +187,7 @@ export function paginationFilterQueueFilms(arrayForDraw) {
   pagination.on('afterMove', (event) => {
     const currentPage = event.page;
     const filteredFilms = arrayForDraw;
-    console.log(filteredFilms);
+    // console.log(filteredFilms);
     const totalFilteredFilms = arrayForDraw.length;
     const totalPages = totalFilteredFilms / 20;
     //создаем массив объектов со свойствами для резки массива фильмов
@@ -216,7 +216,7 @@ export function paginationFilterWatchedFilms(arrayForDraw) {
   pagination.on('afterMove', (event) => {
     const currentPage = event.page;
     const filteredFilms = arrayForDraw;
-    console.log(filteredFilms);
+    // console.log(filteredFilms);
     const totalFilteredFilms = arrayForDraw.length;
     const totalPages = totalFilteredFilms / 20;
     //создаем массив объектов со свойствами для резки массива фильмов
