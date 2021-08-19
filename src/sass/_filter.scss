@@ -34,28 +34,10 @@
   }
 }
 
-.filter__notification--popular {
-  position: absolute;
-  z-index: 200;
-  top: 238px;
-  left: 12%;
-  color: #ff6b01;
-
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.333;
-
-  @media screen and (min-width: 768px) {
-    left: 50%;
-    transform: translate(-50%, 0);
-    top: 255px;
-    font-size: 16px;
-  }
-}
+.filter__notification--popular,
 .filter__notification--library {
   position: absolute;
   z-index: 200;
-  top: 236px;
   left: 12%;
   color: #ff6b01;
 
@@ -66,7 +48,18 @@
   @media screen and (min-width: 768px) {
     left: 50%;
     transform: translate(-50%, 0);
-    top: 245px;
     font-size: 16px;
+  }
+}
+.filter__notification--popular {
+  top: 238px;
+  @media screen and (min-width: 768px) {
+    top: 255px;
+  }
+}
+.filter__notification--library {
+  top: 236px;
+  @media screen and (min-width: 768px) {
+    top: 245px;
   }
 }
