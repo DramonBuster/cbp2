@@ -104,4 +104,4 @@ const e=document.querySelector(".footer__team"),t=document.querySelector(".team_
 },{}],"QvaY":[function(require,module,exports) {
 "use strict";require("../sass/main.scss"),require("./home-button"),require("./my-library"),require("./queue-button"),require("./pagination"),require("./popular"),require("./api-service"),require("./watched-button"),require("./fetch"),require("./fetch-query"),require("./modal"),require("./add-to"),require("./load-spinner"),require("./to-top"),require("./modal-team"),require("./filter");
 },{"../sass/main.scss":"clu1","./home-button":"aRz8","./my-library":"L1LD","./queue-button":"aRz8","./pagination":"o8lo","./popular":"gm7x","./api-service":"aRz8","./watched-button":"aRz8","./fetch":"spyz","./fetch-query":"hbjF","./modal":"RSqK","./add-to":"aRz8","./load-spinner":"aRz8","./to-top":"jlVD","./modal-team":"O9Th","./filter":"GDIU"}]},{},["QvaY"], null)
-//# sourceMappingURL=/cbp2/js.c59e1e78.js.map
+//# sourceMappingURL=/cbp2/js.8bebbbb1.js.map
