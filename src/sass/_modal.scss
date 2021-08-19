@@ -346,13 +346,6 @@ body.modal-open {
 
   transition: color 250ms $timing-fn;
 
-  //   @media screen and (min-width: 320px) {
-  //     top: 10px;
-  //     right: 10px;
-  //     width: 30px;
-  //     height: 30px;
-  //   }
-
   &::after {
     content: '';
     position: absolute;
@@ -377,9 +370,13 @@ body.modal-open {
     transform: rotate(45deg);
     border-right: 2px solid #000000;
   }
-
   &:hover {
-    color: #ff6b01;
+    &::before {
+      border-color: #ff6b01;
+    }
+    &::after {
+      border-color: #ff6b01;
+    }
   }
 
   /*тень кнопки закрытия при фокусе*/
