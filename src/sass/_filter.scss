@@ -34,15 +34,32 @@
   }
 }
 
-.filter__notification {
-  padding-top: 30px;
-  padding-bottom: 10px;
-  // background-color: rgba(0, 0, 0, 0.05);
-}
+.filter__notification--popular,
+.filter__notification--library {
+  position: absolute;
+  z-index: 200;
+  left: 12%;
+  color: #ff6b01;
 
-.filter__notification--text {
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 14px;
   line-height: 1.333;
-  color: #000000;
+
+  @media screen and (min-width: 768px) {
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 16px;
+  }
+}
+.filter__notification--popular {
+  top: 238px;
+  @media screen and (min-width: 768px) {
+    top: 255px;
+  }
+}
+.filter__notification--library {
+  top: 236px;
+  @media screen and (min-width: 768px) {
+    top: 245px;
+  }
 }
