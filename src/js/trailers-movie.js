@@ -1,4 +1,4 @@
-import getFilms from './fetch-popular'
+import getFilms from './fetch'
  
 const galleryContainer = document.querySelector('.film-card__list')
 const modal = document.querySelector('.modal')

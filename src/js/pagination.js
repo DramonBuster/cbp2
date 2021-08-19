@@ -1,9 +1,8 @@
-import getFilms from './fetch-popular'
+import getFilms from './fetch'
 import appendGalleryMarkup from './drow-marckup'
 import Pagination from 'tui-pagination';
 
 //параметры пагинации
-
 const paginationDiv = document.querySelector('.tui-pagination');
 export const options = {
     totalItems: 20000,
@@ -31,7 +30,7 @@ export const options = {
     }
 };
 
-//функция для пагинации популярных фильмов
+//ФУНКЦИЯ ДЛЯ ПАГИНАЦИИ ПОПУЛЯРНЫХ ФИЛЬМОВ
 export function paginationPopularFilms() {
     //собственно рисует интерфейс пагинации
     options.totalItems = localStorage.popularMovies;
@@ -52,10 +51,8 @@ export function paginationPopularFilms() {
     })
 };
 
-//функция для пагинации фильмов по запросу
+//ФУНКЦИЯ ДЛЯ ПАГИНАЦИИ ФИЛЬМОВ ПО ЗАПРОСУ В ИНПУТЕ
 export function paginationSearchFilms() {
-    //проверка локалСторадж на правильное слово инпута
-    // console.log("количество фильмов в локале", localStorage.movies)
     //в параметры пагинации вносим количество фильмов из LocalStorage
     options.totalItems = localStorage.movies;
     // только 1 страница или ничего не найдено прячем кнопки
@@ -81,8 +78,7 @@ export function paginationSearchFilms() {
     }); 
 };
 
-// Прячет одну страницу
-
+//Прячет одну страницу
 function hidePaginationBtns() {
   if (options.totalItems <= 20 || options.totalItems === []) {
     paginationDiv.classList.add('is-hidden');
@@ -91,7 +87,7 @@ function hidePaginationBtns() {
   }
 }
 
-//функция для пагинации фильмов по библиотеке в очереди
+//ФУНКЦИЯ ДЛЯ ПАГИНАЦИИ ФИЛЬМОВ В БИБЛИОТЕКЕ "В ОЧЕРЕДИ"
 export function paginationQueueFilms() {
   //записываем количество фильмов в параметры пагинации
   options.totalItems = JSON.parse(localStorage.queue).length;
@@ -119,7 +115,7 @@ export function paginationQueueFilms() {
   }); 
 };
 
-//функция для пагинации фильмов по библиотеке в просмотренных
+//ФУНКЦИЯ ДЛЯ ПАГИНАЦИИ ФИЛЬМОВ ПО БИБЛИОТЕКЕ В "ПРОСМОТРЕННЫЕ"
 export function paginationWatchedFilms() {
   //записываем количество фильмов в параметры пагинации
   options.totalItems = JSON.parse(localStorage.watched).length;
@@ -148,10 +144,8 @@ export function paginationWatchedFilms() {
   }); 
 };
 
-//функция для пагинации популярных фильмов по фильтрам
+//ФУНКЦИЯ ДЛЯ ПАГИНАЦИИ ПОПУЛЯРНЫХ ФИЛЬМОВ ПО ФИЛЬТРАМ
 export function paginationFilterPopularFilms() {
-    //проверка локалСторадж на правильное слово инпута
-    // console.log("количество фильмов в локале", localStorage.movies)
     //в параметры пагинации вносим количество фильмов из LocalStorage
     options.totalItems = localStorage.movies;
     // только 1 страница или ничего не найдено прячем кнопки
@@ -174,37 +168,8 @@ export function paginationFilterPopularFilms() {
             .catch(error => console.log(error));
     }); 
 };
-//функция для пагинации фильмов по фильтру "в очереди"
-export function paginationFilterQueueFilms(arrayForDraw) {
-  //записываем количество фильмов в параметры пагинации
-  options.totalItems = arrayForDraw.length;
-  hidePaginationBtns();
-  //собственно рисует интерфейс пагинации
-  const pagination = new Pagination('pagination', options);
-  //возвращает на первую страницу
-  pagination.movePageTo(1);
-  //переход по страницам
-  pagination.on('afterMove', (event) => {
-    const currentPage = event.page;
-    const filteredFilms = arrayForDraw;
-    // console.log(filteredFilms);
-    const totalFilteredFilms = arrayForDraw.length;
-    const totalPages = totalFilteredFilms / 20;
-    //создаем массив объектов со свойствами для резки массива фильмов
-    const spliceParams = [];
-    for (let i = 0; i < totalPages; i += 1) {
-      spliceParams.push({ page: i + 1, position: 20 * i });
-    }
-    //получаем номер позиции начала резки масива фильмов
-    const positionSplice = (spliceParams.find(position => position.page == currentPage)).position;
-    //вырезаем нужный кусок массива фильмов для отрисовки выбраной страницы
-    const filmsOnCurrentPage = filteredFilms.splice(positionSplice, 20);
-    appendGalleryMarkup(filmsOnCurrentPage);
-  }); 
-};
-
-//функция для пагинации фильмов по фильтру "просмотренные"
-export function paginationFilterWatchedFilms(arrayForDraw) {
+//ФУНКЦИЯ ДЛЯ ПАГИНАЦИИ ФИЛЬМОВ В БИБЛИОТЕКЕ ПО ФИЛЬТРАМ
+export function paginationFilterLibraryFilms(arrayForDraw) {
   //записываем количество фильмов в параметры пагинации
   options.totalItems = arrayForDraw.length;
   hidePaginationBtns();

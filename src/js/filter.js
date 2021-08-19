@@ -1,6 +1,6 @@
 import appendGalleryMarkup from './drow-marckup';
 import genres from './genres.json';
-import getFilms from './fetch-popular';
+import getFilms from './fetch';
 import { showPopularFilm } from './popular';
 import { clearGallery } from './fetch-query';
 import tplFilterPopular from '../templates/filter-popular.hbs';
@@ -8,7 +8,7 @@ import tplFilterQueue from '../templates/filter-library-queue.hbs';
 import tplFilterWatched from '../templates/filter-library-watched.hbs';
 import { onMadeWatchedGallery } from './modal';
 import { onMadeQueueGallery } from './modal';
-import { paginationFilterQueueFilms, paginationFilterWatchedFilms,paginationFilterPopularFilms } from './pagination';
+import { paginationFilterLibraryFilms,paginationFilterPopularFilms } from './pagination';
 
 const noResultDiv = document.querySelector('.filter-message');
 const paginationDiv = document.querySelector('.tui-pagination');
@@ -99,7 +99,7 @@ function onSearchByGenreQueueFilms() {
     }
     
     setTimeout(() => {
-       paginationFilterQueueFilms(arrayForDraw);
+       paginationFilterLibraryFilms(arrayForDraw);
     }, 300);
     
     filterNotification.textContent = `Movies in the genre of ${genreInput}`
@@ -152,7 +152,7 @@ function onSearchByGenreWatchedFilms() {
     }
     
     setTimeout(() => {
-       paginationFilterWatchedFilms(arrayForDraw);
+       paginationFilterLibraryFilms(arrayForDraw);
     }, 300);
     
     filterNotification.textContent = `Movies in the genre of ${genreInput}`

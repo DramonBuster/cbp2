@@ -1,4 +1,4 @@
-import getFilms from './fetch-popular';
+import getFilms from './fetch';
 import modalFilm from '../templates/modal.hbs';
 import appendGalleryMarkup from './drow-marckup';
 // import cardForFilm from '../templates/film-card.hbs';
