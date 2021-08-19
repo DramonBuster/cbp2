@@ -56,12 +56,6 @@ body.modal-open {
 .backdrop {
   position: fixed;
   top: 0;
-  // left: 0;
-
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-
   width: 100%;
   height: 100%;
 
@@ -103,7 +97,6 @@ body.modal-open {
   transform: translate(-50%, 0);
 
   min-width: 280px;
-  //min-height: 958px;
   padding-top: 48px;
   padding-left: 20px;
   padding-right: 20px;
@@ -113,6 +106,7 @@ body.modal-open {
     0px 2px 1px rgba(0, 0, 0, 0.2);
 
   background-color: #fff;
+  animation: animate_modal 500ms;
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -136,12 +130,6 @@ body.modal-open {
     min-height: 568px;
   }
 }
-// .modal__info {
-//   position: relative;
-//   // position: absolute;
-//   // display: flex;
-//   // flex-direction: column;
-// }
 
 .modal__thumb {
   margin-left: auto;
@@ -398,5 +386,15 @@ body.modal-open {
     //   width: 30px;
     //   height: 30px;
     // }
+  }
+}
+
+//анимация
+@keyframes animate_modal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
