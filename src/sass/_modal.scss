@@ -135,13 +135,24 @@ body.modal-open {
     min-width: 882px;
     min-height: 568px;
   }
+
+  opacity: 0;
+  animation: scaleUp 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
-// .modal__info {
-//   position: relative;
-//   // position: absolute;
-//   // display: flex;
-//   // flex-direction: column;
-// }
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.8) translateY(50%) translateX(-50%);
+    opacity: 1;
+  }
+  50% {
+    // opacity: 0.5;
+  }
+  100% {
+    transform: scale(1) translateY(-50%) translateX(-50%);
+    opacity: 1;
+  }
+}
 
 .modal__thumb {
   margin-left: auto;
