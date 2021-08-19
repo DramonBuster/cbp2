@@ -17,6 +17,7 @@ const headerImg = document.querySelector('.page-header');
 const btnMyLibrary = document.querySelector('.library');
 const btnHome = document.querySelector('.home');
 const paginationDiv = document.querySelector('.tui-pagination');
+const loader = document.querySelector('.loader');
 //убираем нотификацию при клике на кнопки
 const notification = document.querySelector('.notification');
 const notificationEmty = document.querySelector('.notification-enter');
@@ -34,6 +35,7 @@ logoLink.addEventListener('click', () => {
 });
 
 export function showPopularFilm(queryParams) {
+  loader.classList.remove('is-hidden');
   paginationDiv.classList.remove('is-hidden');
   changeMainThemeHeader();
   getFilms(queryParams)
@@ -44,6 +46,7 @@ export function showPopularFilm(queryParams) {
       localStorage.setItem('popularMovies', popularMovies);
   
       appendGalleryMarkup(totalResult);
+      loader.classList.add('is-hidden');
     })
     .catch(error => console.log(error));
     //фильтр по жанру

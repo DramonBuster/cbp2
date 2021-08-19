@@ -10,10 +10,13 @@ const notification = document.querySelector('.notification');
 const notificationEmty = document.querySelector('.notification-enter');
 const paginationDiv = document.querySelector('.tui-pagination');
 const noResultDiv = document.querySelector('.no-result');
+const loader = document.querySelector('.loader');
 
 form.addEventListener('submit', serchFilms);
 
 function serchFilms(e) {
+  // loader
+  loader.classList.remove('is-hidden');
   // cursor spiner
   document.body.style.cursor = 'wait';
   //
@@ -45,6 +48,7 @@ function serchFilms(e) {
         notification.classList.remove('is-hidden');
         noResultDiv.classList.remove('is-hidden');
         paginationDiv.classList.add('is-hidden');
+        loader.classList.add('is-hidden');
     
         // setTimeout(showNotification, 6000);
         return;
@@ -55,6 +59,7 @@ function serchFilms(e) {
       localStorage.setItem('movies', movies);
       const queryCards = films.results;
       createGallery(queryCards);
+      loader.classList.add('is-hidden');
 
       // console.log(films.results, `gfdhg`);
     })
