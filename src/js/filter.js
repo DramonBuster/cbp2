@@ -1,6 +1,6 @@
 import appendGalleryMarkup from './drow-marckup';
 import genres from './genres.json';
-import getFilms from './fetch-popular';
+import getFilms from './fetch';
 import { showPopularFilm } from './popular';
 import { clearGallery } from './fetch-query';
 import tplFilterPopular from '../templates/filter-popular.hbs';
@@ -8,10 +8,11 @@ import tplFilterQueue from '../templates/filter-library-queue.hbs';
 import tplFilterWatched from '../templates/filter-library-watched.hbs';
 import { onMadeWatchedGallery } from './modal';
 import { onMadeQueueGallery } from './modal';
-import { paginationFilterQueueFilms, paginationFilterWatchedFilms,paginationFilterPopularFilms } from './pagination';
+import { paginationFilterLibraryFilms,paginationFilterPopularFilms } from './pagination';
 
-const noResultDiv = document.querySelector('.no-result');
+const noResultDiv = document.querySelector('.filter-message');
 const paginationDiv = document.querySelector('.tui-pagination');
+const noResultGenre = document.querySelector('.no-result__genre');
 
 //создаем фильтр популярных фильмов
 export function filterPopular() {
@@ -28,7 +29,7 @@ export function filterPopular() {
 //поиск популярных фильмов по жанру
 function onSearchByGenrePopularFilms() {
     const genreFilterPopular = document.getElementById("filter-popular");
-    const filterNotification = document.querySelector('.filter__notification');
+    const filterNotification = document.querySelector('.filter__notification--popular');
     clearGallery();
     const genreInput = genreFilterPopular.value;
     if (genreInput === "Any") {
@@ -56,6 +57,7 @@ function onSearchByGenrePopularFilms() {
 //создаем фильтр фильмов в очереди
 export function filterQueue() {
     clearFilter()
+    noResultDiv.classList.add('is-hidden');
     const filter = document.querySelector('.filter');
     //рисуем новый фильтр
     const filterForLibraryQueue = tplFilterQueue();
@@ -69,7 +71,7 @@ export function filterQueue() {
 //поиск фильмов в очереди по жанру
 function onSearchByGenreQueueFilms() {
     const genreFilterLibraryQueue = document.getElementById("filter-library-queue");
-    const filterNotification = document.querySelector('.filter__notification');
+    const filterNotification = document.querySelector('.filter__notification--library');
     clearGallery();
     //получаем значение выбора в фильтре
     const genreInput = genreFilterLibraryQueue.value;
@@ -87,9 +89,8 @@ function onSearchByGenreQueueFilms() {
     }
     //если фильмы по жанру не найдены
     if (arrayForDraw.length === 0) {
-        //filterMessage.classList.add('is-hidden');
-        filterNotification.textContent = `No movies in the genre of ${genreInput}`
-        filterNotification.classList.remove('is-hidden');
+        filterNotification.classList.add('is-hidden');
+        noResultGenre.textContent = `${genreInput}`;
         noResultDiv.classList.remove('is-hidden');
         paginationDiv.classList.add('is-hidden');
         return;
@@ -98,7 +99,7 @@ function onSearchByGenreQueueFilms() {
     }
     
     setTimeout(() => {
-       paginationFilterQueueFilms(arrayForDraw);
+       paginationFilterLibraryFilms(arrayForDraw);
     }, 300);
     
     filterNotification.textContent = `Movies in the genre of ${genreInput}`
@@ -109,6 +110,7 @@ function onSearchByGenreQueueFilms() {
 //создаем фильтр просмотренных фильмов
 export function filterWatched() {
     clearFilter()
+    noResultDiv.classList.add('is-hidden');
     const filter = document.querySelector('.filter');
     //рисуем новый фильтр
     const filterForLibraryWatched = tplFilterWatched();
@@ -122,7 +124,7 @@ export function filterWatched() {
 //поиск просмотренных фильмов по жанру
 function onSearchByGenreWatchedFilms() {
     const genreFilterLibraryWatched = document.getElementById("filter-library-watched");
-    const filterNotification = document.querySelector('.filter__notification');
+    const filterNotification = document.querySelector('.filter__notification--library');
     clearGallery();
     //получаем значение выбора в фильтре
     const genreInput = genreFilterLibraryWatched.value;
@@ -140,9 +142,8 @@ function onSearchByGenreWatchedFilms() {
     }
     //если фильмы по жанру не найдены
     if (arrayForDraw.length === 0) {
-        // filterMessage.classList.add('is-hidden');
-        filterNotification.textContent = `No movies in the genre of ${genreInput}`
-        filterNotification.classList.remove('is-hidden');
+        filterNotification.classList.add('is-hidden');
+        noResultGenre.textContent = `${genreInput}`;
         noResultDiv.classList.remove('is-hidden');
         paginationDiv.classList.add('is-hidden');
         return;
@@ -151,7 +152,7 @@ function onSearchByGenreWatchedFilms() {
     }
     
     setTimeout(() => {
-       paginationFilterWatchedFilms(arrayForDraw);
+       paginationFilterLibraryFilms(arrayForDraw);
     }, 300);
     
     filterNotification.textContent = `Movies in the genre of ${genreInput}`

@@ -202,7 +202,7 @@ button.serchBtn {
   right: 0px;
   size: 16px;
   &:hover,
-  &:focus{
+  &:focus {
     cursor: pointer;
   }
 }
@@ -211,9 +211,9 @@ button.serchBtn {
   color: #ffffff;
   position: absolute;
   right: 0px;
-  
+
   &:hover,
-  &:focus{
+  &:focus {
     cursor: pointer;
     width: 14px;
     height: 14px;
@@ -227,7 +227,8 @@ button.serchBtn {
   }
 }
 
-.notification {
+.notification,
+.notification-enter {
   color: rgba(255, 0, 27, 1);
   text-align: center;
   width: 100%;
@@ -245,11 +246,13 @@ button.serchBtn {
   }
 
   @media screen and (min-width: 1024px) {
-    top: 60%;  }
+    top: 60%;
+  }
 }
 
 //добавлены анимации на нотификацию
-.notification {
+.notification,
+.notification-enter {
   animation: OpeningSequence 2000ms linear forwards;
 }
 
@@ -269,7 +272,9 @@ button.serchBtn {
     pointer-events: none;
   }
 }
-
+.notification-enter {
+  color: rgb(214, 201, 202);
+}
 // Замена фона для библиотеки
 
 .library-header {
