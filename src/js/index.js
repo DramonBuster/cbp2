@@ -4,7 +4,6 @@ import './my-library';
 import './queue-button';
 import './pagination';
 import './popular';
-import './api-service';
 import './watched-button';
 import './fetch';
 import './fetch-query';
