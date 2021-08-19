@@ -73,6 +73,8 @@ function onGetFilm(evt) {
 function onModalMakeCard(film) {
   openedFilm = film;
   openedFilm.genres = openedFilm.genres.map(genre => genre.name).join(', ');
+  //оставляем в рейтинге популярности одно число после запятой = 1.2836 станет 1.2
+  openedFilm.popularity = openedFilm.popularity.toFixed(1);
 
   const modalCard = modalFilm(openedFilm);
 

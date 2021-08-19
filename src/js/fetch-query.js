@@ -7,6 +7,7 @@ const form = document.querySelector('.form');
 // const input = document.querySelector('.form__input');
 const galleryContainer = document.querySelector('.film-card__list');
 const notification = document.querySelector('.notification');
+const notificationEmty = document.querySelector('.notification-enter');
 const paginationDiv = document.querySelector('.tui-pagination');
 const noResultDiv = document.querySelector('.no-result');
 
@@ -17,11 +18,24 @@ function serchFilms(e) {
   document.body.style.cursor = 'wait';
   //
   e.preventDefault();
-  clearGallery();
-  clearFilter()
+
   //cкрываем нотификацию
-  showNotification()
+  hideNotification()
   const currentTarget = e.target.elements.searchQuery.value.trim();
+  if (currentTarget === '') {
+    showNotificationEmptyRequest() 
+    console.log('НЕТ НИФИГА!!!')
+  //     setTimeout(() => {
+  //   document.body.style.cursor = 'default';
+  // }, 00);
+     setTimeout(() => {
+    document.body.style.cursor = 'default';
+  }, 100);
+    return
+  }
+    clearFilter()
+   clearGallery();
+ 
   localStorage.setItem('input', currentTarget);
   let queryParams = `search/movie?api_key=27c4b211807350ab60580c41abf1bb8c&language=en-US&page=1&include_adult=false&query=${currentTarget}`;
   console.log(queryParams);
@@ -49,16 +63,16 @@ function serchFilms(e) {
       noResultDiv.classList.remove('is-hidden');
       console.log(error);
     });
-  // end cursor spinner
-  setTimeout(() => {
+    // end cursor spinner
+    setTimeout(() => {
     document.body.style.cursor = 'default';
-  }, 100);
-  //
-  //запускаем пагинацию фильмов по названию
-  setTimeout(() => {
-    paginationSearchFilms();
-  }, 300);
-  form.reset();
+    }, 100);
+    //
+    //запускаем пагинацию фильмов по названию
+     setTimeout(() => {
+       paginationSearchFilms();
+     }, 300);
+     form.reset();
 }
 
 export function clearGallery() {
@@ -69,8 +83,10 @@ function createGallery(queryCards) {
   appendGalleryMarkup(queryCards);
 }
 
-function showNotification() {
-  console.log('Показываю предупреждение');
+function hideNotification() {
   notification.classList.add('is-hidden');
-  // paginationDiv.classList.remove('is-hidden');
+   notificationEmty.classList.add('is-hidden');
+}
+function showNotificationEmptyRequest() {
+  notificationEmty.classList.remove('is-hidden');
 }
