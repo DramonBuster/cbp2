@@ -90,8 +90,10 @@ function appendModalMarckup(trailerFilm) {
     btn.classList.remove('show');
     body.classList.add('modal-open');
     modal.classList.remove('is-hidden');
-    backdrop.classList.remove('is-hidden')
+    backdrop.classList.remove('is-hidden');
+    
     const trailerKey = trailerFilm.key;
+    console.log(trailerKey, `key`)
     
      modal.innerHTML = ` <div class="modal__trailer"><iframe class="modal__frame"  src="https://www.youtube.com/embed/${trailerKey}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>   <button class='button-close' data-modal-close>
   </button>`;
