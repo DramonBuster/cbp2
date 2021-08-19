@@ -1,4 +1,4 @@
-import getFilms from './fetch-popular';
+import getFilms from './fetch';
 import appendGalleryMarkup from './drow-marckup';
 import { paginationSearchFilms } from './pagination';
 import {clearFilter } from './filter';

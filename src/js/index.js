@@ -6,7 +6,7 @@ import './pagination';
 import './popular';
 import './api-service';
 import './watched-button';
-import './fetch-popular';
+import './fetch';
 import './fetch-query';
 import './modal';
 import './add-to';
