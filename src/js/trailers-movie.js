@@ -58,32 +58,54 @@ function fetchTraillerFilm(queryParams, currentId) {
     getFilms(queryParams).then(film => {
        
         const trailers = film.results;
+      
         putTrailerInModal(trailers, currentId)
     
-    } )
+    }).catch(error => {
+        console.log(error)
+       
+    })
 
     
 }
 function putTrailerInModal(trailers, currentId) {
   
     if (trailers.length === 0) {
-      
+     
          showTexNoResulttButton(currentId)
         return
     }
- const trailerFilm = trailers.find(trailer => {
-
-            if (trailer.name.includes('Official') && trailer.name.includes('Trailer')) {
+ let trailerFilm = trailers.find(trailer => {
+ 
+     trailer.name = trailer.name.toLowerCase()
+    
+     if (trailer.name.includes('official') && trailer.name.includes('trailer')) {
+              
                return trailer.key;
-            } else if(trailer.name.includes('Trailer')) {
+     } else if (trailer.name.includes('trailer')) {
+        
                return trailer.key;
-            }
+     }
+    
      if (trailers.length === 1) {
+          console.log(`мало огня`)
          return trailers[0];
      }
      
         
  })
+    //   if (!trailerFilm) {
+    //    if (trailers.length > 1) {
+    //        console.log(`мало огня`, trailers[0] )
+    //        trailerFilm = trailers[0];
+    //  }
+    // }
+    if (!trailerFilm) {
+       
+        showTexNoResulttButton(currentId)
+        return
+    }
+  
   appendModalMarckup(trailerFilm)
 }
 function appendModalMarckup(trailerFilm) {
