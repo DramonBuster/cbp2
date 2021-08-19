@@ -9,6 +9,7 @@ btnShowTeam.addEventListener('click', onTeamModalOpen);
 function onTeamModalOpen() {
   lightBox.classList.remove('is-hidden');
   body.classList.add('modal-open');
+    btn.classList.remove('show');
 
   btnTeamModalClose.addEventListener('click', onTeamModalClose);
   lightBox.addEventListener('click', evt => {

@@ -227,7 +227,8 @@ button.serchBtn {
   }
 }
 
-.notification {
+.notification,
+.notification-enter {
   color: rgba(255, 0, 27, 1);
   text-align: center;
   width: 100%;
@@ -250,7 +251,8 @@ button.serchBtn {
 }
 
 //добавлены анимации на нотификацию
-.notification {
+.notification,
+.notification-enter {
   animation: OpeningSequence 2000ms linear forwards;
 }
 
@@ -270,7 +272,9 @@ button.serchBtn {
     pointer-events: none;
   }
 }
-
+.notification-enter {
+  color: rgb(214, 201, 202);
+}
 // Замена фона для библиотеки
 
 .library-header {
