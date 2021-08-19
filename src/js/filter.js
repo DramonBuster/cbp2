@@ -29,7 +29,7 @@ export function filterPopular() {
 //поиск популярных фильмов по жанру
 function onSearchByGenrePopularFilms() {
     const genreFilterPopular = document.getElementById("filter-popular");
-    const filterNotification = document.querySelector('.filter__notification');
+    const filterNotification = document.querySelector('.filter__notification--popular');
     clearGallery();
     const genreInput = genreFilterPopular.value;
     if (genreInput === "Any") {
@@ -71,7 +71,7 @@ export function filterQueue() {
 //поиск фильмов в очереди по жанру
 function onSearchByGenreQueueFilms() {
     const genreFilterLibraryQueue = document.getElementById("filter-library-queue");
-    const filterNotification = document.querySelector('.filter__notification');
+    const filterNotification = document.querySelector('.filter__notification--library');
     clearGallery();
     //получаем значение выбора в фильтре
     const genreInput = genreFilterLibraryQueue.value;
@@ -124,7 +124,7 @@ export function filterWatched() {
 //поиск просмотренных фильмов по жанру
 function onSearchByGenreWatchedFilms() {
     const genreFilterLibraryWatched = document.getElementById("filter-library-watched");
-    const filterNotification = document.querySelector('.filter__notification');
+    const filterNotification = document.querySelector('.filter__notification--library');
     clearGallery();
     //получаем значение выбора в фильтре
     const genreInput = genreFilterLibraryWatched.value;
