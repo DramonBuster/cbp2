@@ -51,12 +51,13 @@ function onSearchByGenrePopularFilms() {
             const movies = films.total_results;
             localStorage.setItem('movies', movies);
             appendGalleryMarkup(films.results);
-             loader.classList.add('is-hidden');
+            loader.classList.add('is-hidden');
+            paginationFilterPopularFilms();
      
         });
-   setTimeout(() => {
-       paginationFilterPopularFilms();
-   }, 300);
+//    setTimeout(() => {
+//        paginationFilterPopularFilms();
+//    }, 300);
     filterNotification.textContent = `Popular movies in the genre of ${genreInput}`
     filterNotification.classList.remove('is-hidden');
 }
