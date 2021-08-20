@@ -81,6 +81,7 @@ loader.classList.remove('is-hidden');
 }
 
 export function clearGallery() {
+  paginationDiv.classList.add('is-hidden');
   galleryContainer.innerHTML = ' ';
 }
 
