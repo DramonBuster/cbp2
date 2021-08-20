@@ -58,40 +58,64 @@ function fetchTraillerFilm(queryParams, currentId) {
     getFilms(queryParams).then(film => {
        
         const trailers = film.results;
+      
         putTrailerInModal(trailers, currentId)
     
-    } )
+    }).catch(error => {
+        console.log(error)
+       
+    })
 
     
 }
 function putTrailerInModal(trailers, currentId) {
   
     if (trailers.length === 0) {
-      
+     
          showTexNoResulttButton(currentId)
         return
     }
- const trailerFilm = trailers.find(trailer => {
-
-            if (trailer.name.includes('Official') && trailer.name.includes('Trailer')) {
+ let trailerFilm = trailers.find(trailer => {
+ 
+     trailer.name = trailer.name.toLowerCase()
+    
+     if (trailer.name.includes('official') && trailer.name.includes('trailer')) {
+              
                return trailer.key;
-            } else if(trailer.name.includes('Trailer')) {
+     } else if (trailer.name.includes('trailer')) {
+        
                return trailer.key;
-            }
+     }
+    
      if (trailers.length === 1) {
+          console.log(`мало огня`)
          return trailers[0];
      }
      
         
  })
+    //   if (!trailerFilm) {
+    //    if (trailers.length > 1) {
+    //        console.log(`мало огня`, trailers[0] )
+    //        trailerFilm = trailers[0];
+    //  }
+    // }
+    if (!trailerFilm) {
+       
+        showTexNoResulttButton(currentId)
+        return
+    }
+  
   appendModalMarckup(trailerFilm)
 }
 function appendModalMarckup(trailerFilm) {
     btn.classList.remove('show');
     body.classList.add('modal-open');
     modal.classList.remove('is-hidden');
-    backdrop.classList.remove('is-hidden')
+    backdrop.classList.remove('is-hidden');
+    
     const trailerKey = trailerFilm.key;
+    console.log(trailerKey, `key`)
     
      modal.innerHTML = ` <div class="modal__trailer"><iframe class="modal__frame"  src="https://www.youtube.com/embed/${trailerKey}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>   <button class='button-close' data-modal-close>
   </button>`;
@@ -114,7 +138,6 @@ function closeModal(evt) {
         backdrop.classList.add('is-hidden');
          body.classList.remove('modal-open');
       
-        // btn.classList.add('show');
         modal.innerHTML = ''; 
     }
       modal.classList.add('is-hidden')
