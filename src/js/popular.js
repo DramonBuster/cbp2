@@ -21,6 +21,7 @@ const loader = document.querySelector('.loader');
 //убираем нотификацию при клике на кнопки
 const notification = document.querySelector('.notification');
 const notificationEmty = document.querySelector('.notification-enter');
+const noResultDivFilter = document.querySelector('.filter-message');
 
 let queryParams = `trending/movie/week?api_key=27c4b211807350ab60580c41abf1bb8c`;
 
@@ -84,6 +85,7 @@ function changeLookOfTheSite() {
   // changeMainThemeHeader();
   btnQueueInHeader.classList.remove('current');
   btnWatchedInHeader.classList.remove('current');
+  noResultDivFilter.classList.add('is-hidden');
  
   //убирает фильтр
   clearFilter();
