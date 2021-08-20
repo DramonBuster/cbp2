@@ -138,7 +138,6 @@ function closeModal(evt) {
         backdrop.classList.add('is-hidden');
          body.classList.remove('modal-open');
       
-        // btn.classList.add('show');
         modal.innerHTML = ''; 
     }
       modal.classList.add('is-hidden')
