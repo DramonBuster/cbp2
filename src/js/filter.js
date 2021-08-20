@@ -13,6 +13,7 @@ import { paginationFilterLibraryFilms,paginationFilterPopularFilms } from './pag
 const noResultDiv = document.querySelector('.filter-message');
 const paginationDiv = document.querySelector('.tui-pagination');
 const noResultGenre = document.querySelector('.no-result__genre');
+const loader = document.querySelector('.loader');
 
 //создаем фильтр популярных фильмов
 export function filterPopular() {
@@ -23,6 +24,7 @@ export function filterPopular() {
     filter.insertAdjacentHTML('beforeend', filterForPopular);
     const genreFilterPopular = document.getElementById("filter-popular");
     //вешаем слушатель на фильтр
+ 
     genreFilterPopular.addEventListener("change", onSearchByGenrePopularFilms);
 }
 
@@ -31,6 +33,9 @@ function onSearchByGenrePopularFilms() {
     const genreFilterPopular = document.getElementById("filter-popular");
     const filterNotification = document.querySelector('.filter__notification--popular');
     clearGallery();
+       // console.log(loader)
+    loader.classList.remove('is-hidden');
+     console.log(loader)
     const genreInput = genreFilterPopular.value;
     if (genreInput === "Any") {
         filterNotification.classList.add('is-hidden');
@@ -46,6 +51,8 @@ function onSearchByGenrePopularFilms() {
             const movies = films.total_results;
             localStorage.setItem('movies', movies);
             appendGalleryMarkup(films.results);
+             loader.classList.add('is-hidden');
+     
         });
    setTimeout(() => {
        paginationFilterPopularFilms();
@@ -73,10 +80,14 @@ function onSearchByGenreQueueFilms() {
     const genreFilterLibraryQueue = document.getElementById("filter-library-queue");
     const filterNotification = document.querySelector('.filter__notification--library');
     clearGallery();
+    loader.classList.remove('is-hidden');
+    
     //получаем значение выбора в фильтре
     const genreInput = genreFilterLibraryQueue.value;
     if (genreInput === "Any") {
         onMadeQueueGallery();
+        loader.classList.add('is-hidden');
+    
         return;
     }
     //создаем новый массив фильмов, которые содержат нужный жанр
@@ -93,9 +104,13 @@ function onSearchByGenreQueueFilms() {
         noResultGenre.textContent = `${genreInput}`;
         noResultDiv.classList.remove('is-hidden');
         paginationDiv.classList.add('is-hidden');
+        loader.classList.add('is-hidden');
+     
         return;
     } else {
         appendGalleryMarkup(arrayForDraw.slice(0, 20));
+        loader.classList.add('is-hidden');
+    
     }
     
     setTimeout(() => {
@@ -126,10 +141,14 @@ function onSearchByGenreWatchedFilms() {
     const genreFilterLibraryWatched = document.getElementById("filter-library-watched");
     const filterNotification = document.querySelector('.filter__notification--library');
     clearGallery();
+    loader.classList.remove('is-hidden');
+    
     //получаем значение выбора в фильтре
     const genreInput = genreFilterLibraryWatched.value;
     if (genreInput === "Any") {
         onMadeWatchedGallery();
+        loader.classList.add('is-hidden');
+   
         return;
     }
     //создаем новый массив фильмов, которые содержат нужный жанр
@@ -146,9 +165,12 @@ function onSearchByGenreWatchedFilms() {
         noResultGenre.textContent = `${genreInput}`;
         noResultDiv.classList.remove('is-hidden');
         paginationDiv.classList.add('is-hidden');
+        loader.classList.add('is-hidden');
+    
         return;
     } else {
         appendGalleryMarkup(arrayForDraw.slice(0, 20));
+        loader.classList.add('is-hidden');
     }
     
     setTimeout(() => {
