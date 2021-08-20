@@ -2,6 +2,7 @@ import getFilms from './fetch';
 import appendGalleryMarkup from './drow-marckup';
 import { paginationSearchFilms } from './pagination';
 import { clearFilter } from './filter';
+import { showPopularFilm } from './popular';
 
 
 const form = document.querySelector('.form');
@@ -57,6 +58,8 @@ function serchFilms(e) {
       }
       loader.classList.add('is-hidden');
       notification.classList.remove('is-hidden');
+      let queryParams = `trending/movie/week?api_key=27c4b211807350ab60580c41abf1bb8c`;
+      showPopularFilm(queryParams);
  
     })
     .catch(error => {
