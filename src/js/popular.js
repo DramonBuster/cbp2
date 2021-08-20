@@ -48,13 +48,14 @@ export function showPopularFilm(queryParams) {
   
       appendGalleryMarkup(totalResult);
       loader.classList.add('is-hidden');
+      paginationPopularFilms();
     })
     .catch(error => console.log(error));
     //фильтр по жанру
     filterPopular() 
-    setTimeout(() => {
-      paginationPopularFilms();
-    }, 300);
+    // setTimeout(() => {
+    //   paginationPopularFilms();
+    // }, 300);
 }
 
 function changeMainThemeHeader() {
